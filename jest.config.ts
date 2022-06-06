@@ -20,4 +20,10 @@ export default {
       statements: 25,
     },
   },
+  testMatch: [
+    "**/__tests__/**/*.[jt]s?(x)",
+    "**/?(*.)+(spec|test).[jt]s?(x)",
+    "!**/node/**",
+    "!**/build/**"
+  ]
 };
