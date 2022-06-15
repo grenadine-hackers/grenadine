@@ -1,8 +1,8 @@
 import React from "react";
 import {render, screen} from "@testing-library/react";
-import Vote from "~/routes/vote";
+import Vote from "../routes/vote";
 
-describe('health page', () => {
+describe('vote page', () => {
   it('fails', () => {
     render(<Vote></Vote>)
 

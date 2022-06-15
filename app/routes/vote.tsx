@@ -1,7 +1,7 @@
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
-import { getProposals, Proposal } from "~/models/proposal.server";
+import { getProposals } from "~/models/proposal.server";
 import { Card } from "~/ui/card";
 
 type LoaderData = {
@@ -17,11 +17,10 @@ export const loader = async () => {
 
 export default function Vote() {
     const { proposals } = useLoaderData<LoaderData>();
-    console.log(proposals);
     return (
       <div>
         <h1>Proposals</h1>
-        {proposals.map((proposal: Proposal) => (
+        {proposals.map((proposal) => (
           <Card 
             key={proposal.id}
             proposal={proposal}>
