@@ -4,7 +4,7 @@ export type Proposal = {
     moment: string;
 };
 
-export async function getProposals(): Promise<Array<Proposal>> {
+export async function getProposals(): Promise<Proposal[]> {
     return [
         {
             id: 1,
