@@ -3,6 +3,9 @@
  * https://jestjs.io/docs/configuration
  */
 
+import { installGlobals } from "@remix-run/node";
+installGlobals();
+
 export default {
   testEnvironment: 'jsdom',
   transform: {
