@@ -1,7 +1,7 @@
 import React from 'react';
 import {render, screen} from "@testing-library/react";
 import {getProposals} from "../proposal/domain/proposal.fixture";
-import {Timeline} from "./timeline";
+import { Timeline } from './Timeline';
 
 describe('<Timeline />', () => {
     it('show list of proposals', () => {
