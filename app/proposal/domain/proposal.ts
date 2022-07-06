@@ -25,7 +25,7 @@ export const getProposal = (proposal: Partial<ProposalProps> = {}): Proposal => 
   return {date: proposal.date ?? new Date(), slot: proposal.slot ?? ProposalSlot.MIDI};
 }
 
-export const ProposalInMemoryRepository: ProposalRepository = {
+export const InMemoryProposalRepository: ProposalRepository = {
   getProposal,
   getNearestProposals: () => [getProposal(), getProposal()] // TODO: getNearestProposals
 }
