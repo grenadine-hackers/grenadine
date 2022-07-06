@@ -10,7 +10,7 @@ describe('<NearProposals />', () => {
     });
 
     it('show list of proposals', () => {
-        render(<TestWrapper><NearProposals /></TestWrapper>);
+        render(<TestWrapper proposalRepository={}><NearProposals /></TestWrapper>);
         const proposals = screen.getAllByRole('article');
         expect(proposals.length).toBe(2);
     });

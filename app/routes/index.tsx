@@ -3,7 +3,7 @@ import { ProposalProvider } from '~/proposal/ProposalContext';
 
 export default function Index() {
   return (
-    <ProposalProvider>
+    <ProposalProvider proposalRepository={}>
       <NearProposals />
     </ProposalProvider>
   );
