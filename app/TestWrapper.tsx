@@ -4,7 +4,7 @@ import {InMemoryProposalRepository} from './proposal/domain/proposal'
 import type {ProposalRepository} from './proposal/domain/proposal'
 
 interface TestProps {
-    children: React.ReactNode,
+    children: React.ReactElement,
     proposalRepository: ProposalRepository
 }
 

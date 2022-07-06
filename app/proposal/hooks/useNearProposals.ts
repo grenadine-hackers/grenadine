@@ -1,6 +1,7 @@
-import { getProposal } from "../domain/proposal";
+import {useContext} from "react";
+import {ProposalContext} from "~/proposal/ProposalContext";
 
 export const useNearProposals = () => {
-    const proposals = [getProposal(), getProposal()];
-    return proposals;
+    const { proposalRepository} = useContext(ProposalContext)
+    return () => proposalRepository.getNearestProposals();
 };

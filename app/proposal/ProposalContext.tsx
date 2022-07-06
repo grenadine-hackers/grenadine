@@ -1,10 +1,10 @@
 import React from "react";
-import { ProposalRepository } from "./domain/proposal";
+import {InMemoryProposalRepository, ProposalRepository} from "./domain/proposal";
 
-export const ProposalContext = React.createContext({toto: ''});
+export const ProposalContext = React.createContext<{proposalRepository: ProposalRepository}>({proposalRepository: InMemoryProposalRepository});
 
 export const ProposalProvider: React.FC<{children: React.ReactElement, proposalRepository: ProposalRepository}> = ({children}) => {
-  return(<ProposalContext.Provider value={{toto: 'tutu'}}>
+  return(<ProposalContext.Provider value={{proposalRepository: InMemoryProposalRepository}}>
     {children}
   </ProposalContext.Provider>)
 }
