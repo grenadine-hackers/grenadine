@@ -1,7 +1,7 @@
 import React from 'react';
 import {render, screen} from "@testing-library/react";
-import { TestWrapper } from '../../TestWrapper';
 import { NearProposals } from './NearProposals';
+import {TestWrapper} from "../../TestWrapper";
 
 describe('<NearProposals />', () => {
     it('display nearest proposals', () => {
