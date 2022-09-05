@@ -22,7 +22,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "serve": "http-server ./build"
+    "serve": "http-server ./build --port 10000"
   },
   "eslintConfig": {
     "extends": [
