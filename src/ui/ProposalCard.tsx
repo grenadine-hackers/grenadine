@@ -1,10 +1,5 @@
-import React from "react";
+import React from 'react';
 
 export const ProposalCard: React.FC = () => {
-  return (
-    <article>
-      toto
-    </article>
-
-  )
-}
+  return <article>toto</article>;
+};

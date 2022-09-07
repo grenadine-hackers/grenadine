@@ -9,7 +9,6 @@
     "import",
     "jest",
     "jsx-a11y",
-    "mysticatea",
     "prefer-object-spread",
     "prettier",
     "react",
@@ -46,7 +45,6 @@
     ],
     "import/no-unresolved": 0,
     "import/prefer-default-export": 0,
-    "mysticatea/no-useless-rest-spread": "error",
     "prefer-object-spread/prefer-object-spread": 2,
     "react/destructuring-assignment": 0,
     "react/jsx-filename-extension": [

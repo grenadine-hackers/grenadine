@@ -1,5 +1,5 @@
-import React from "react";
+import React from 'react';
 
-export const TestWrapper: React.FC<{children: React.ReactElement}> = ({children}) => {
-    return <>{children}</>;
+export const TestWrapper: React.FC<{ children: React.ReactElement }> = ({ children }) => {
+  return <>{children}</>;
 };

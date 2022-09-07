@@ -1,6 +1,6 @@
 export enum ProposalSlot {
   MIDI,
-  SOIR
+  SOIR,
 }
 
 export type Proposal = {
@@ -11,9 +11,9 @@ export type Proposal = {
 type ProposalProps = {
   date: Date;
   slot: ProposalSlot;
-}
+};
 
-export type Proposals = Proposal[]
+export type Proposals = Proposal[];
 
 export interface ProposalRepository {
   getProposal(proposal: Partial<ProposalProps>): Proposal;
@@ -22,10 +22,10 @@ export interface ProposalRepository {
 
 // TODO remove this export
 export const getProposal = (proposal: Partial<ProposalProps> = {}): Proposal => {
-  return {date: proposal.date ?? new Date(), slot: proposal.slot ?? ProposalSlot.MIDI};
-}
+  return { date: proposal.date ?? new Date(), slot: proposal.slot ?? ProposalSlot.MIDI };
+};
 
 export const ProposalInMemoryRepository: ProposalRepository = {
   getProposal,
-  getNearestProposals: () => [getProposal(), getProposal()] // TODO: getNearestProposals
-}
+  getNearestProposals: () => [getProposal(), getProposal()], // TODO: getNearestProposals
+};

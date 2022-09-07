@@ -1,6 +1,6 @@
 import React from 'react';
-import {ProposalProvider} from "../proposal/ProposalContext";
-import {NearProposals} from "../proposal/containers/NearProposals";
+import { ProposalProvider } from '../proposal/ProposalContext';
+import { NearProposals } from '../proposal/containers/NearProposals';
 
 export default function Index() {
   return (
