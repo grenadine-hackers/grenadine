@@ -25,5 +25,9 @@ export default {
     "**/?(*.)+(spec|test).[jt]s?(x)",
     "!**/node/**",
     "!**/build/**"
-  ]
+  ],
+  moduleNameMapper: {
+    '\\.css$': '<rootDir>/src/styleMock.js',
+
+  }
 };
