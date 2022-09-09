@@ -4,8 +4,7 @@ module.exports = {
     es2021: true
   },
   extends: [
-    'plugin:react/recommended',
-    'standard-with-typescript'
+    "plugin:@typescript-eslint/recommended", "react-app", "plugin:react/recommended", "prettier"
   ],
   overrides: [
   ],
@@ -15,7 +14,16 @@ module.exports = {
     project: 'tsconfig.json'
   },
   plugins: [
-    'react'
+    "import",
+    "jest",
+    "jsx-a11y",
+    "mysticatea",
+    "prefer-object-spread",
+    "prettier",
+    "react",
+    "@typescript-eslint",
+    "risxss",
+    "eslint-plugin-import-helpers"
   ],
   "ignorePatterns": ["jest.config.ts", "**/vendor/*.js", "**/*.d.ts"],
   rules: {
