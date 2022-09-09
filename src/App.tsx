@@ -1,9 +1,11 @@
-import React from 'react';
-import './App.css';
-import Index from './routes';
+import React from 'react'
 
-function App() {
-  return <Index />;
+import './App.css'
+
+export const App: React.FC = () => {
+  return (
+    <div className="App">
+      Proposals
+    </div>
+  )
 }
-
-export default App;
