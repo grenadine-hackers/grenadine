@@ -25,8 +25,7 @@ export interface ProposalRepository {
   getNearestProposals(): Proposals;
 }
 
-// TODO remove this export
-export const getProposal = (proposal: Partial<ProposalProps> = {}): Proposal => {
+const getProposal = (proposal: Partial<ProposalProps> = {}): Proposal => {
   return { id: uuid(), date: proposal.date ?? new Date(), slot: proposal.slot ?? ProposalSlot.LUNCH };
 };
 

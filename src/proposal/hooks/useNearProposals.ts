@@ -1,6 +1,6 @@
-import { getProposal } from '../domain/proposal';
+import { ProposalInMemoryRepository } from '../domain/proposal';
 
 export const useNearProposals = () => {
-  const proposals = [getProposal(), getProposal()];
-  return proposals;
+  const { getProposal } = ProposalInMemoryRepository;
+  return [getProposal({}), getProposal({})];
 };
