@@ -26,5 +26,5 @@ const getProposal = (proposal: Partial<Proposal> = {}): Proposal => {
 
 export const ProposalInMemoryRepository: ProposalRepository = {
   getProposal,
-  getNearestProposals: () => [getProposal(), getProposal()], // TODO: getNearestProposals
+  getNearestProposals: () => [getProposal({}), getProposal({})], // TODO: getNearestProposals
 };

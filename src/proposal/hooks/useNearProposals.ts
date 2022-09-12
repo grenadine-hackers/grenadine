@@ -1,6 +1,7 @@
-import { ProposalInMemoryRepository } from '../domain/proposal';
+import { ProposalContext } from '../ProposalContext';
+import { useContext } from 'react';
 
 export const useNearProposals = () => {
-  const { getProposal } = ProposalInMemoryRepository;
-  return [getProposal({}), getProposal({})];
+  const { repository } = useContext(ProposalContext);
+  return repository.getNearestProposals();
 };
