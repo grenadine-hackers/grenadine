@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Proposals } from '../domain/proposal';
 import { useNearProposals } from '../hooks/useNearProposals';
-import { ProposalCard } from '../components/ui/ProposalCard';
+import { ProposalCard } from '../components/ProposalCard';
 
 export const NearProposals: React.FC = () => {
   const proposals: Proposals = useNearProposals();
