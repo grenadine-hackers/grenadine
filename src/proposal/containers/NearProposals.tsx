@@ -1,14 +1,16 @@
 import React from 'react';
-import { Timeline } from '../../ui/Timeline';
-import type { Proposal } from '../domain/proposal';
+import type { Proposals } from '../domain/proposal';
 import { useNearProposals } from '../hooks/useNearProposals';
+import { ProposalCard } from '../components/ui/ProposalCard';
 
 export const NearProposals: React.FC = () => {
-  const proposals: Proposal[] = useNearProposals();
+  const proposals: Proposals = useNearProposals();
   return (
     <>
-      <h1>NearProposals</h1>|
-      <Timeline proposals={proposals} />
+      <h1>NearProposals</h1>
+      {proposals.map((proposal) => (
+        <ProposalCard proposal={proposal} key={proposal.id} />
+      ))}
     </>
   );
 };

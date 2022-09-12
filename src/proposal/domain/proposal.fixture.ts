@@ -6,4 +6,4 @@ const { getProposal } = ProposalInMemoryRepository;
 export const proposalLunch: Proposal = getProposal({});
 export const proposalDinner: Proposal = getProposal({ slot: ProposalSlot.DINNER });
 
-export const getProposals = [proposalLunch, proposalDinner];
+export const proposals = [proposalLunch, proposalDinner];
