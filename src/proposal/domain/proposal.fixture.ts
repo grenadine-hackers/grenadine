@@ -1,7 +1,7 @@
 import type { Proposal } from './proposal';
 import { getProposal, ProposalSlot } from './proposal';
 
-export const proposalMidi: Proposal = getProposal({});
-export const proposalSoir: Proposal = getProposal({ slot: ProposalSlot.SOIR });
+export const proposalLunch: Proposal = getProposal({});
+export const proposalDinner: Proposal = getProposal({ slot: ProposalSlot.DINNER });
 
-export const getProposals = [proposalMidi, proposalSoir];
+export const getProposals = [proposalLunch, proposalDinner];
