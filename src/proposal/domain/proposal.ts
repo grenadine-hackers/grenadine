@@ -1,17 +1,12 @@
 import { v4 as uuid } from 'uuid';
-
-export enum ProposalSlot {
-  LUNCH,
-  DINNER,
-}
+import { Day, Slot, SlotType } from './slot';
 
 export type ProposalId = string;
 
 export type Proposal = {
   id: ProposalId;
-  date: Date;
-  slot: ProposalSlot;
-};
+} & Day &
+  Slot;
 
 export type Proposals = Proposal[];
 
@@ -21,7 +16,7 @@ export interface ProposalRepository {
 }
 
 const getProposal = (proposal: Partial<Proposal> = {}): Proposal => {
-  return { id: proposal.id ?? uuid(), date: proposal.date ?? new Date(), slot: proposal.slot ?? ProposalSlot.LUNCH };
+  return { id: proposal.id ?? uuid(), date: proposal.date ?? new Date(), slot: proposal.slot ?? SlotType.LUNCH };
 };
 
 export const ProposalInMemoryRepository: ProposalRepository = {
