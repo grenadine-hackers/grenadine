@@ -6,6 +6,3 @@ export enum SlotType {
 export type Slot = {
   slot: SlotType;
 };
-export type Day = {
-  date: Date;
-};

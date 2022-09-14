@@ -1,5 +1,6 @@
 import { v4 as uuid } from 'uuid';
-import { Day, Slot, SlotType } from './slot';
+import { Slot, SlotType } from './slot';
+import { Day } from './day';
 
 export type ProposalId = string;
 
