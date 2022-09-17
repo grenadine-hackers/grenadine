@@ -1,8 +1,8 @@
-import { period } from '../infrastructure/period';
+import { getNextWeeks } from './getNextWeeks';
 
 describe('period calculation', () => {
   it('retuns the next week', () => {
-    const testedPeriod = period({ weeks: 4 }, '2022-09-14T00:00:00.000Z');
+    const testedPeriod = getNextWeeks({ date: '2022-09-14T00:00:00.000Z' });
 
     expect(testedPeriod).toEqual([
       { date: '2022-09-14T00:00:00.000Z' },
@@ -22,6 +22,10 @@ describe('period calculation', () => {
       { date: '2022-10-04T00:00:00.000Z' },
       { date: '2022-10-05T00:00:00.000Z' },
       { date: '2022-10-06T00:00:00.000Z' },
+      { date: '2022-10-07T00:00:00.000Z' },
+      { date: '2022-10-10T00:00:00.000Z' },
+      { date: '2022-10-11T00:00:00.000Z' },
+      { date: '2022-10-12T00:00:00.000Z' },
     ]);
   });
 });
