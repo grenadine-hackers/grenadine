@@ -1,8 +1,8 @@
-import { getNextWeeks } from './getNextWeeks';
+import { calendarRepository } from './calendarRepository';
 
-describe('period calculation', () => {
-  it('retuns the next week', () => {
-    const testedPeriod = getNextWeeks({ date: '2022-09-14T00:00:00.000Z' });
+describe('calendarRepository', () => {
+  it('retuns the next four weeks without weekends', () => {
+    const testedPeriod = calendarRepository.getNextWeeks({ date: '2022-09-14T00:00:00.000Z' });
 
     expect(testedPeriod).toEqual([
       { date: '2022-09-14T00:00:00.000Z' },

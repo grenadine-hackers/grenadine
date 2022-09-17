@@ -2,13 +2,14 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
-import { Day } from '../domain/day';
+import { Day } from '../proposal/domain/day';
+import { CalendarRepository } from '../proposal/ProposalContext';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(isSameOrBefore);
 
-export const getNextWeeks = (startDay: Day): Day[] => {
+const getNextWeeks = (startDay: Day): Day[] => {
   let startDate = dayjs(startDay.date);
   const endDate = startDate.add(4, 'weeks');
 
@@ -21,4 +22,8 @@ export const getNextWeeks = (startDay: Day): Day[] => {
   }
 
   return finalPeriod;
+};
+
+export const calendarRepository: CalendarRepository = {
+  getNextWeeks,
 };

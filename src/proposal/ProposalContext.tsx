@@ -1,13 +1,30 @@
 import React from 'react';
 import { ProposalInMemoryRepository, ProposalRepository } from './domain/proposal';
+import { Day } from './domain/day';
 
-export const ProposalContext = React.createContext<{ repository: ProposalRepository }>({
-  repository: ProposalInMemoryRepository,
+export interface CalendarRepository {
+  getNextWeeks: (startDay: Day) => Day[];
+}
+const defaultCalendarRepository: CalendarRepository = { getNextWeeks: () => [] };
+
+export const ProposalContext = React.createContext<{
+  proposalRepository: ProposalRepository;
+  calendarRepository: CalendarRepository;
+}>({
+  proposalRepository: ProposalInMemoryRepository,
+  calendarRepository: defaultCalendarRepository,
 });
 
-export const ProposalProvider: React.FC<{ children: React.ReactElement; repository: ProposalRepository }> = ({
-  children,
-  repository,
-}) => {
-  return <ProposalContext.Provider value={{ repository }}>{children}</ProposalContext.Provider>;
+export const ProposalProvider: React.FC<{
+  children: React.ReactElement;
+  proposalRepository: ProposalRepository;
+  calendarRepository: CalendarRepository;
+}> = ({ children, proposalRepository, calendarRepository }) => {
+  return (
+    <ProposalContext.Provider
+      value={{ proposalRepository, calendarRepository: calendarRepository ?? defaultCalendarRepository }}
+    >
+      {children}
+    </ProposalContext.Provider>
+  );
 };
