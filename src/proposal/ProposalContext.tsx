@@ -1,6 +1,7 @@
 import React from 'react';
-import { ProposalInMemoryRepository, ProposalRepository } from './domain/proposal';
+import { ProposalRepository } from './domain/proposal';
 import { Day } from './domain/day';
+import { ProposalInMemoryRepository } from '../infrastructure/proposalInMemoryRepository';
 
 export interface CalendarRepository {
   getNextWeeks: (startDay: Day) => Day[];

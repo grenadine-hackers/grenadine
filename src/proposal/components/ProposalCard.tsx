@@ -5,6 +5,7 @@ export const ProposalCard: React.FC<{ proposal: Proposal }> = ({ proposal }) => 
   return (
     <article>
       {proposal.id} &nbsp;
+      {proposal.date}
       {proposal.slot}
     </article>
   );

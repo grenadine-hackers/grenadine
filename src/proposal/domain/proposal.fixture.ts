@@ -1,6 +1,6 @@
 import type { Proposal } from './proposal';
-import { ProposalInMemoryRepository } from './proposal';
 import { SlotType } from './slot';
+import { ProposalInMemoryRepository } from '../../infrastructure/proposalInMemoryRepository';
 
 const { getProposal } = ProposalInMemoryRepository;
 
