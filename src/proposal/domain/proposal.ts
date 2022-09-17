@@ -17,7 +17,11 @@ export interface ProposalRepository {
 }
 
 const getProposal = (proposal: Partial<Proposal> = {}): Proposal => {
-  return { id: proposal.id ?? uuid(), date: proposal.date ?? new Date(), slot: proposal.slot ?? SlotType.LUNCH };
+  return {
+    id: proposal.id ?? uuid(),
+    date: proposal.date ?? new Date().toISOString(),
+    slot: proposal.slot ?? SlotType.LUNCH,
+  };
 };
 
 export const ProposalInMemoryRepository: ProposalRepository = {
