@@ -1,25 +1,35 @@
-import React from 'react'
-import { render, screen } from '@testing-library/react'
-import { NearProposals } from './NearProposals'
-import { TestWrapper } from '../../TestWrapper'
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import { NearProposals } from './NearProposals';
+import { TestWrapper } from '../../TestWrapper';
+import { ProposalInMemoryRepository } from '../../infrastructure/proposalInMemoryRepository';
+import { createProposal } from '../domain/proposal';
+import { proposals } from '../domain/proposal.fixture';
 
 describe('<NearProposals />', () => {
-  it('display nearest proposals', () => {
+  it('displays next lunch dates', () => {
     render(
       <TestWrapper>
-        <NearProposals/>
-      </TestWrapper>
-    )
-    screen.getByRole('heading', { name: 'NearProposals' })
-  })
+        <NearProposals />
+      </TestWrapper>,
+    );
 
-  it('show list of proposals', () => {
+    screen.getByRole('heading', { name: 'Prochain midi' });
+  });
+
+  it('bfruiebgti', () => {
     render(
-      <TestWrapper>
-        <NearProposals/>
-      </TestWrapper>
-    )
-    const proposals = screen.getAllByRole('article')
-    expect(proposals.length).toBe(2)
-  })
-})
+      <TestWrapper
+        proposalRepository={{
+          ...ProposalInMemoryRepository,
+          getNearestProposals: () => [...proposals],
+        }}
+      >
+        <NearProposals />
+      </TestWrapper>,
+    );
+
+    const articles = screen.getAllByRole('article');
+    expect(articles.length).toBe(proposals.length);
+  });
+});

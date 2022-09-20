@@ -1,10 +1,14 @@
-import type { Proposal } from './proposal';
+import type { Proposals } from './proposal';
+import { createProposal } from './proposal';
 import { SlotType } from './slot';
-import { ProposalInMemoryRepository } from '../../infrastructure/proposalInMemoryRepository';
 
-const { createProposal } = ProposalInMemoryRepository;
-
-export const proposalLunch: Proposal = createProposal({});
-export const proposalDinner: Proposal = createProposal({ slot: SlotType.DINNER });
-
-export const proposals = [proposalLunch, proposalDinner];
+export const proposals: Proposals = [
+  createProposal({ slot: SlotType.DINNER, date: '2022-09-28T00:00:00Z ' }),
+  createProposal({ slot: SlotType.DINNER, date: '2022-09-28T00:00:00Z ' }),
+  createProposal({ slot: SlotType.DINNER, date: '2022-09-28T00:00:00Z ' }),
+  createProposal({ slot: SlotType.LUNCH, date: '2022-09-28T00:00:00Z ' }),
+  createProposal({ slot: SlotType.LUNCH, date: '2022-09-28T00:00:00Z ' }),
+  createProposal({ slot: SlotType.DINNER, date: '2022-09-23T00:00:00Z ' }),
+  createProposal({ slot: SlotType.LUNCH, date: '2022-09-23T00:00:00Z ' }),
+  createProposal({ slot: SlotType.DINNER, date: '2022-09-28T00:00:00Z ' }),
+];
