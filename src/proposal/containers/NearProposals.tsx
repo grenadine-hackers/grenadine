@@ -9,9 +9,12 @@ export const NearProposals: React.FC = () => {
   return (
     <>
       <h1>Prochain midi</h1>
-      {proposals.map((proposal) => (
-        <ProposalCard proposal={proposal} key={proposal.id} />
-      ))}
+      {proposals.length === 0 ? (
+        <span>Aucun midi disponible</span>
+      ) : (
+        proposals.map((proposal) => <ProposalCard proposal={proposal} key={proposal.id} />)
+      )}
+      {}
     </>
   );
 };

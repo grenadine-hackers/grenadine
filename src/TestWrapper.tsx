@@ -3,6 +3,7 @@ import { CalendarRepository, ProposalProvider } from './proposal/ProposalContext
 import { calendarRepository as calendarInMemoryRepository } from './infrastructure/calendarRepository';
 import { ProposalInMemoryRepository } from './infrastructure/proposalInMemoryRepository';
 import { ProposalRepository } from './proposal/domain/proposal';
+import { j0 } from './proposal/domain/day.fixture';
 
 export const TestWrapper: React.FC<{
   children: React.ReactElement;
@@ -11,7 +12,9 @@ export const TestWrapper: React.FC<{
 }> = ({
   children,
   proposalRepository = ProposalInMemoryRepository,
-  calendarRepository = calendarInMemoryRepository,
+  calendarRepository = calendarInMemoryRepository ?? {
+    getNextWeeks: () => calendarRepository.getNextWeeks(j0),
+  },
 }) => {
   return (
     <ProposalProvider proposalRepository={proposalRepository} calendarRepository={calendarRepository}>

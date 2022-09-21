@@ -4,6 +4,8 @@ import { NearProposals } from './NearProposals';
 import { TestWrapper } from '../../TestWrapper';
 import { ProposalInMemoryRepository } from '../../infrastructure/proposalInMemoryRepository';
 import { proposals } from '../domain/proposal.fixture';
+import { j0 } from '../domain/day.fixture';
+import { calendarRepository } from '../../infrastructure/calendarRepository';
 
 describe('<NearProposals />', () => {
   it('displays next lunch dates', () => {
@@ -16,19 +18,18 @@ describe('<NearProposals />', () => {
     screen.getByRole('heading', { name: 'Prochain midi' });
   });
 
-  it('bfruiebgti', () => {
+  it('finds no proposals', () => {
     render(
       <TestWrapper
         proposalRepository={{
           ...ProposalInMemoryRepository,
-          getNearestProposals: () => [...proposals],
+          getNearestProposals: () => [],
         }}
       >
         <NearProposals />
       </TestWrapper>,
     );
 
-    const articles = screen.getAllByRole('article');
-    expect(articles.length).toBe(proposals.length);
+    screen.getByText('Aucun midi disponible');
   });
 });
