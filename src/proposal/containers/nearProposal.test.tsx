@@ -3,7 +3,6 @@ import { render, screen } from '@testing-library/react';
 import { NearProposals } from './NearProposals';
 import { TestWrapper } from '../../TestWrapper';
 import { ProposalInMemoryRepository } from '../../infrastructure/proposalInMemoryRepository';
-import { createProposal } from '../domain/proposal';
 import { proposals } from '../domain/proposal.fixture';
 
 describe('<NearProposals />', () => {

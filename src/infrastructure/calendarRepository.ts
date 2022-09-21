@@ -10,7 +10,7 @@ dayjs.extend(timezone);
 dayjs.extend(isSameOrBefore);
 
 const getNextWeeks = (startDay: Day): Day[] => {
-  let startDate = dayjs(startDay.date);
+  let startDate = dayjs(startDay.date).utc();
   const endDate = startDate.add(4, 'weeks');
 
   const finalPeriod: Day[] = [];
