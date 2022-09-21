@@ -31,6 +31,9 @@ export const j27 = createDay({ year: 2022, month: 10, day: 10 });
 export const j28 = createDay({ year: 2022, month: 10, day: 11 });
 export const j29 = createDay({ year: 2022, month: 10, day: 12 }); // weekend
 
+// day after the data set, to test outdated data
+export const jOutdated = createDay({ year: 2022, month: 11, day: 11 });
+
 export const weekDays: Day[] = [
   j0,
   j3,
