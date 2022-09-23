@@ -4,9 +4,13 @@ import { Day } from './domain/day';
 import { ProposalInMemoryRepository } from '../infrastructure/proposalInMemoryRepository';
 
 export interface CalendarRepository {
+  today: () => Day;
   getNextWeeks: (startDay: Day) => Day[];
 }
-const defaultCalendarRepository: CalendarRepository = { getNextWeeks: () => [] };
+const defaultCalendarRepository: CalendarRepository = {
+  today: () => ({ date: new Date().toISOString() }),
+  getNextWeeks: () => [],
+};
 
 export const ProposalContext = React.createContext<{
   proposalRepository: ProposalRepository;

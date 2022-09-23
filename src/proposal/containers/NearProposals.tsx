@@ -2,6 +2,7 @@ import React from 'react';
 import { Proposals } from '../domain/proposal';
 import { useNearProposals } from '../hooks/useNearProposals';
 import { ProposalCard } from '../components/ProposalCard';
+import { useCalendar } from '../hooks/useCalendar';
 
 export const NearProposals: React.FC = () => {
   const proposals: Proposals = useNearProposals();

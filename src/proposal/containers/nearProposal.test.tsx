@@ -4,8 +4,7 @@ import { NearProposals } from './NearProposals';
 import { TestWrapper } from '../../TestWrapper';
 import { ProposalInMemoryRepository } from '../../infrastructure/proposalInMemoryRepository';
 import { proposals } from '../domain/proposal.fixture';
-import { j0 } from '../domain/day.fixture';
-import { calendarRepository } from '../../infrastructure/calendarRepository';
+import { j0, jOutdated } from '../domain/day.fixture';
 
 describe('<NearProposals />', () => {
   it('displays next lunch dates', () => {
@@ -31,5 +30,38 @@ describe('<NearProposals />', () => {
     );
 
     screen.getByText('Aucun midi disponible');
+  });
+
+  it('finds outdated proposals', () => {
+    render(
+      <TestWrapper
+        proposalRepository={{
+          ...ProposalInMemoryRepository,
+          getNearestProposals: () => [...proposals],
+        }}
+        today={jOutdated}
+      >
+        <NearProposals />
+      </TestWrapper>,
+    );
+
+    screen.getByText('Aucun midi disponible');
+  });
+
+  it('finds proposals', () => {
+    render(
+      <TestWrapper
+        proposalRepository={{
+          ...ProposalInMemoryRepository,
+          getNearestProposals: () => [...proposals],
+        }}
+        today={j0}
+      >
+        <NearProposals />
+      </TestWrapper>,
+    );
+
+    const availablesDates = screen.getAllByRole('article');
+    expect(availablesDates).toHaveLength(proposals.length);
   });
 });
