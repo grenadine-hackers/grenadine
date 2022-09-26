@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { NearProposals } from './NearProposals';
 import { TestWrapper } from '../../TestWrapper';
 import { ProposalInMemoryRepository } from '../../infrastructure/proposalInMemoryRepository';
@@ -8,16 +9,21 @@ import { j0, jOutdated } from '../domain/day.fixture';
 
 describe('<NearProposals />', () => {
   it('displays next lunch dates', () => {
+    expect.assertions(1);
+
     render(
       <TestWrapper>
         <NearProposals />
       </TestWrapper>,
     );
 
-    screen.getByRole('heading', { name: 'Prochain midi' });
+    const heading = screen.getByRole('heading', { name: 'Prochain midi' });
+    expect(heading).toBeInTheDocument();
   });
 
   it('finds no proposals', () => {
+    expect.assertions(1);
+
     render(
       <TestWrapper
         proposalRepository={{
@@ -29,10 +35,12 @@ describe('<NearProposals />', () => {
       </TestWrapper>,
     );
 
-    screen.getByText('Aucun midi disponible');
+    const noLunch = screen.getByText('Aucun midi disponible');
+    expect(noLunch).toBeInTheDocument();
   });
 
   it('finds outdated proposals', () => {
+    expect.assertions(1);
     render(
       <TestWrapper
         proposalRepository={{
@@ -45,10 +53,12 @@ describe('<NearProposals />', () => {
       </TestWrapper>,
     );
 
-    screen.getByText('Aucun midi disponible');
+    const noLunch = screen.getByText('Aucun midi disponible');
+    expect(noLunch).toBeInTheDocument();
   });
 
   it('finds proposals', () => {
+    expect.assertions(1);
     render(
       <TestWrapper
         proposalRepository={{
