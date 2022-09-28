@@ -1,6 +1,7 @@
-import { calendarRepository } from "./calendarRepository";
-import { j0, weekDays } from "@/proposal/domain/day.fixture";
 import { describe, expect, it } from "vitest";
+import { j0, weekDays } from "@/proposal/domain/day.fixture";
+
+import { calendarRepository } from "./calendarRepository";
 
 describe("calendarRepository", () => {
   it("returns the next four weeks without weekends", () => {
