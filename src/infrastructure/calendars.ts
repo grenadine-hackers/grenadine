@@ -1,9 +1,10 @@
+import type { Calendars as Calendar, Day } from "@/proposal/domain/day";
+
 import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
-import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
-import type { CalendarRepository, Day } from "@/proposal/domain/day";
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -29,7 +30,7 @@ const getNextWeeks = (startDay: Day): Day[] => {
   return finalPeriod;
 };
 
-export const calendarRepository: CalendarRepository = {
+export const calendar: Calendar = {
   today,
   getNextWeeks,
 };

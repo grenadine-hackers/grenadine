@@ -2,7 +2,7 @@ export type Day = {
   date: string;
 };
 
-export interface CalendarRepository {
+export interface Calendars {
   today: () => Day;
   getNextWeeks: (startDay: Day) => Day[];
 }
