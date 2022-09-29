@@ -1,0 +1,61 @@
+{
+  "numTotalTestSuites": 4,
+  "numPassedTestSuites": 4,
+  "numFailedTestSuites": 0,
+  "numPendingTestSuites": 0,
+  "numTotalTests": 2,
+  "numPassedTests": 1,
+  "numFailedTests": 1,
+  "numPendingTests": 0,
+  "numTodoTests": 0,
+  "startTime": 1664461712464,
+  "success": false,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "calendars"
+          ],
+          "fullName": " calendars returns the next four weeks without weekends",
+          "status": "passed",
+          "title": "returns the next four weeks without weekends",
+          "duration": 2,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1664461712922,
+      "endTime": 1664461712924,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/seyb/dev/grenadine/src/infrastructure/calendars.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "NearProposals"
+          ],
+          "fullName": " NearProposals tetet",
+          "status": "failed",
+          "title": "tetet",
+          "duration": 1,
+          "failureMessages": [
+            "document is not defined"
+          ],
+          "location": {
+            "line": 18,
+            "column": 4
+          }
+        }
+      ],
+      "startTime": 1664461712988,
+      "endTime": 1664461712989,
+      "status": "failed",
+      "message": "",
+      "name": "/Users/seyb/dev/grenadine/src/proposal/NearProposals.test.ts"
+    }
+  ]
+}
