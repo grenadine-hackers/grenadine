@@ -1,15 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/vue";
+
 import NearProposals from "@/proposal/NearProposals.vue";
+import { SlotType } from "@/proposal/domain/slot";
 
 describe("NearProposals", () => {
   it("displays next lunch dates", () => {
     expect.assertions(1);
 
-    render({
-      template: `<NearProposals slot-type="Slotype.LUNCH" />`,
-      components: { NearProposals },
-    });
+    render(NearProposals, { props: { slotType: SlotType.LUNCH } });
 
     const heading = screen.getByRole("heading", { name: "Prochain midi" });
     expect(heading).toBeTruthy();
@@ -18,10 +17,7 @@ describe("NearProposals", () => {
   it("displays next lunch dates", () => {
     expect.assertions(1);
 
-    render({
-      template: `<NearProposals  slot-type="Slotype.DINNER" />`,
-      components: { NearProposals },
-    });
+    render(NearProposals, { props: { slotType: SlotType.DINNER } });
 
     const heading = screen.getByRole("heading", { name: "Prochain afterwork" });
     expect(heading).toBeTruthy();

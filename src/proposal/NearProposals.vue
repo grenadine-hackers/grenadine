@@ -6,7 +6,7 @@ defineProps<{ slotType: SlotType }>();
 
 <template>
   <div>
-    <h1 v-if="isLunch">Prochain midi</h1>
-    <h1 v-if="isDinner">Prochain afterwork</h1>
+    <h1 v-if="isLunch(slotType)">Prochain midi</h1>
+    <h1 v-if="isDinner(slotType)">Prochain afterwork</h1>
   </div>
 </template>
