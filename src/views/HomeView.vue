@@ -1,5 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import NearProposals from "@/proposal/NearProposals";
+</script>
 
 <template>
-  <main></main>
+  <NearProposals />
 </template>

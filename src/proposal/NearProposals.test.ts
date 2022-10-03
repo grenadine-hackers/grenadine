@@ -1,18 +1,84 @@
 import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/vue";
-import type { Component } from "vue";
-
-const testedComponent: Component = {
-  template: `
-      <h1>
-        Hello World
-      </h1>`,
-};
+import NearProposals from "@/proposal/NearProposals.vue";
 
 describe("NearProposals", () => {
-  it("tetet", () => {
-    render(testedComponent, {});
-    const head = screen.getByRole("heading", { name: "Hello World" });
-    expect(head).toBeTruthy();
+  it("displays next lunch dates", () => {
+    expect.assertions(1);
+
+    render({
+      template: `<NearProposals slot-type="Slotype.LUNCH" />`,
+      components: { NearProposals },
+    });
+
+    const heading = screen.getByRole("heading", { name: "Prochain midi" });
+    expect(heading).toBeTruthy();
   });
+
+  it("displays next lunch dates", () => {
+    expect.assertions(1);
+
+    render({
+      template: `<NearProposals  slot-type="Slotype.DINNER" />`,
+      components: { NearProposals },
+    });
+
+    const heading = screen.getByRole("heading", { name: "Prochain afterwork" });
+    expect(heading).toBeTruthy();
+  });
+
+  /*
+  it('finds no proposals', () => {
+    expect.assertions(1);
+
+    render(
+      <TestWrapperé
+        proposalRepository={{
+    ...ProposalInMemoryRepository,
+        getNearestProposals: () => [],
+    }}
+  >
+    <NearProposals />
+    </TestWrapper>,
+  );
+
+    const noLunch = screen.getByText('Aucun midi disponible');
+    expect(noLunch).toBeInTheDocument();
+  });
+
+  it('finds outdated proposals', () => {
+    expect.assertions(1);
+    render(
+      <TestWrapper
+        proposalRepository={{
+    ...ProposalInMemoryRepository,
+        getNearestProposals: () => [...proposals],
+    }}
+    today={jOutdated}
+      >
+      <NearProposals />
+      </TestWrapper>,
+  );
+
+    const noLunch = screen.getByText('Aucun midi disponible');
+    expect(noLunch).toBeInTheDocument();
+  });
+
+  it('finds proposals', () => {
+    expect.assertions(1);
+    render(
+      <TestWrapper
+        proposalRepository={{
+    ...ProposalInMemoryRepository,
+        getNearestProposals: () => [...proposals],
+    }}
+    today={j0}
+      >
+      <NearProposals />
+      </TestWrapper>,
+  );
+
+    const availablesDates = screen.getAllByRole('article');
+    expect(availablesDates).toHaveLength(proposals.length);
+  });*/
 });
