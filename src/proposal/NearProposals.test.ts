@@ -5,42 +5,41 @@ import NearProposals from "@/proposal/NearProposals.vue";
 import { SlotType } from "@/proposal/domain/slot";
 
 describe("NearProposals", () => {
-  it("displays next lunch dates", () => {
-    expect.assertions(1);
+  describe.each([
+    {
+      slotType: SlotType.LUNCH,
+      expectedName: "Prochain midi",
+      expectedNoResults: "Aucun midi disponible",
+    },
+    {
+      slotType: SlotType.DINNER,
+      expectedName: "Prochain afterwork",
+      expectedNoResults: "Aucun afterwork disponible",
+    },
+  ])(
+    "Near proposals on $slotType",
+    ({ slotType, expectedName, expectedNoResults }) => {
+      it(`displays next ${slotType} dates`, () => {
+        expect.assertions(1);
 
-    render(NearProposals, { props: { slotType: SlotType.LUNCH } });
+        render(NearProposals, { props: { slotType } });
 
-    const heading = screen.getByRole("heading", { name: "Prochain midi" });
-    expect(heading).toBeTruthy();
-  });
+        const heading = screen.getByRole("heading", { name: expectedName });
+        expect(heading).toBeTruthy();
+      });
+      it(`finds no proposals for ${slotType}`, () => {
+        expect.assertions(1);
 
-  it("displays next lunch dates", () => {
-    expect.assertions(1);
+        render(NearProposals, { props: { slotType } });
 
-    render(NearProposals, { props: { slotType: SlotType.DINNER } });
-
-    const heading = screen.getByRole("heading", { name: "Prochain afterwork" });
-    expect(heading).toBeTruthy();
-  });
-
-  /*
-  it('finds no proposals', () => {
-    expect.assertions(1);
-
-    render(
-      <TestWrapperé
-        proposalRepository={{
-    ...ProposalInMemoryRepository,
-        getNearestProposals: () => [],
-    }}
-  >
-    <NearProposals />
-    </TestWrapper>,
+        const noLunch = screen.getByText(expectedNoResults);
+        expect(noLunch).toBeTruthy();
+      });
+    }
   );
+});
 
-    const noLunch = screen.getByText('Aucun midi disponible');
-    expect(noLunch).toBeInTheDocument();
-  });
+/*
 
   it('finds outdated proposals', () => {
     expect.assertions(1);
@@ -77,4 +76,3 @@ describe("NearProposals", () => {
     const availablesDates = screen.getAllByRole('article');
     expect(availablesDates).toHaveLength(proposals.length);
   });*/
-});
