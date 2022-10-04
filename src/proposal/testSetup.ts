@@ -18,7 +18,7 @@ export const testSetup = ({
 
   const provideProposals: ProposalRepository = {
     ...ProposalInMemoryRepository,
-    getNearestProposals: () => nearProposals ?? [],
+    getProposals: () => nearProposals ?? [],
   };
 
   return {

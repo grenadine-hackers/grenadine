@@ -3,5 +3,5 @@ import type { ProposalRepository } from "@/proposal/domain/proposal";
 
 export const ProposalInMemoryRepository: ProposalRepository = {
   createProposal,
-  getNearestProposals: () => [],
+  getProposals: () => [],
 };

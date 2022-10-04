@@ -15,7 +15,7 @@ export type Proposals = Proposal[];
 export interface ProposalRepository {
   createProposal(proposal: Partial<Proposal>): Proposal;
 
-  getNearestProposals(): Proposals;
+  getProposals(): Proposals;
 }
 
 export const createProposal = (proposal: Partial<Proposal> = {}): Proposal => {

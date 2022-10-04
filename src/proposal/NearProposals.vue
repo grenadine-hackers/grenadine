@@ -2,18 +2,23 @@
 import { SlotType, isLunch, isDinner } from "@/proposal/domain/slot";
 import { inject } from "vue";
 import type { Calendars } from "@/proposal/domain/day";
-import type { ProposalRepository, Proposals } from "@/proposal/domain/proposal";
+import type {
+  Proposal,
+  ProposalRepository,
+  Proposals,
+} from "@/proposal/domain/proposal";
 import { ProposalInMemoryRepository } from "@/infrastructure/proposalInMemoryRepository";
 import dayjs from "dayjs";
 import { calendar } from "@/infrastructure/calendars";
 const calendars = inject<Calendars>("calendars", calendar);
-const { getNearestProposals } = inject<ProposalRepository>(
+const { getProposals } = inject<ProposalRepository>(
   "proposals",
   ProposalInMemoryRepository
 );
-const proposals: Proposals = getNearestProposals().filter((proposal) =>
-  dayjs(proposal.date).isSameOrAfter(calendars.today().date)
-);
+const isOutdated = (proposal: Proposal): boolean =>
+  dayjs(proposal.date).isSameOrAfter(calendars.today().date);
+
+const proposals: Proposals = getProposals().filter(isOutdated);
 
 defineProps<{ slotType: SlotType }>();
 </script>
