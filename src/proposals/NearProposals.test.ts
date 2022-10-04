@@ -5,7 +5,7 @@ import NearProposals from "@/proposals/NearProposals.vue";
 import { SlotType } from "@/proposals/domain/slot";
 import type { Day } from "@/proposals/domain/day";
 import type { ProposalCollection } from "@/proposals/domain/proposal";
-import { testSetup } from "./testSetup";
+import { testSetup } from "../testSetup";
 import { jOutdated } from "@/proposals/domain/day.fixture";
 import { proposals } from "@/proposals/domain/proposal.fixture";
 
