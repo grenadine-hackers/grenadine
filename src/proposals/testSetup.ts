@@ -1,6 +1,6 @@
 import type { Calendars } from "./domain/day";
 import { ProposalInMemoryRepository } from "@/infrastructure/proposalInMemoryRepository";
-import type { ProposalRepository } from "./domain/proposal";
+import type { Proposals } from "./domain/proposal";
 import type { RenderOptions } from "@testing-library/vue";
 import type { SetupOptions } from "./NearProposals.test";
 import { calendar } from "@/infrastructure/calendars";
@@ -16,7 +16,7 @@ export const testSetup = ({
     today: () => today ?? j0,
   };
 
-  const provideProposals: ProposalRepository = {
+  const provideProposals: Proposals = {
     ...ProposalInMemoryRepository,
     getProposals: () => nearProposals ?? [],
   };

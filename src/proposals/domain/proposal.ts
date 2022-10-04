@@ -10,12 +10,12 @@ export type Proposal = {
 } & Day &
   Slot;
 
-export type Proposals = Proposal[];
+export type ProposalCollection = Proposal[];
 
-export interface ProposalRepository {
+export interface Proposals {
   createProposal(proposal: Partial<Proposal>): Proposal;
 
-  getProposals(): Proposals;
+  getProposals(): ProposalCollection;
 }
 
 export const createProposal = (proposal: Partial<Proposal> = {}): Proposal => {

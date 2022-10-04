@@ -4,13 +4,13 @@ import { render, screen, type RenderOptions } from "@testing-library/vue";
 import NearProposals from "@/proposals/NearProposals.vue";
 import { SlotType } from "@/proposals/domain/slot";
 import type { Day } from "@/proposals/domain/day";
-import type { Proposals } from "@/proposals/domain/proposal";
+import type { ProposalCollection } from "@/proposals/domain/proposal";
 import { testSetup } from "./testSetup";
 import { jOutdated } from "@/proposals/domain/day.fixture";
 import { proposals } from "@/proposals/domain/proposal.fixture";
 
 export type SetupOptions = RenderOptions & { today?: Day } & {
-  nearProposals?: Proposals;
+  nearProposals?: ProposalCollection;
 };
 
 describe("NearProposals", () => {
