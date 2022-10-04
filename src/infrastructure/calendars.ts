@@ -1,4 +1,4 @@
-import type { Calendars as Calendar, Day } from "@/proposal/domain/day";
+import type { Calendars as Calendar, Day } from "@/proposals/domain/day";
 
 import dayjs from "dayjs";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";

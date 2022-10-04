@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { render, screen, type RenderOptions } from "@testing-library/vue";
 
-import NearProposals from "@/proposal/NearProposals.vue";
-import { SlotType } from "@/proposal/domain/slot";
-import type { Day } from "@/proposal/domain/day";
-import type { Proposals } from "@/proposal/domain/proposal";
+import NearProposals from "@/proposals/NearProposals.vue";
+import { SlotType } from "@/proposals/domain/slot";
+import type { Day } from "@/proposals/domain/day";
+import type { Proposals } from "@/proposals/domain/proposal";
 import { testSetup } from "./testSetup";
-import { jOutdated } from "@/proposal/domain/day.fixture";
-import { proposals } from "@/proposal/domain/proposal.fixture";
+import { jOutdated } from "@/proposals/domain/day.fixture";
+import { proposals } from "@/proposals/domain/proposal.fixture";
 
 export type SetupOptions = RenderOptions & { today?: Day } & {
   nearProposals?: Proposals;

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { j0, weekDays } from "@/proposal/domain/day.fixture";
+import { j0, weekDays } from "@/proposals/domain/day.fixture";
 
 import { calendar } from "./calendars";
 

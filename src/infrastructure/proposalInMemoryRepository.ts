@@ -1,5 +1,5 @@
-import { createProposal } from "@/proposal/domain/proposal";
-import type { ProposalRepository } from "@/proposal/domain/proposal";
+import { createProposal } from "@/proposals/domain/proposal";
+import type { ProposalRepository } from "@/proposals/domain/proposal";
 
 export const ProposalInMemoryRepository: ProposalRepository = {
   createProposal,

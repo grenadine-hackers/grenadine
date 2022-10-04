@@ -1,6 +1,6 @@
 import type { Slot } from "./slot";
 import { SlotType } from "./slot";
-import type { Day } from "@/proposal/domain/day";
+import type { Day } from "@/proposals/domain/day";
 import { v4 as uuid } from "uuid";
 
 export type ProposalId = string;

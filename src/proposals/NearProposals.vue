@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { SlotType, isLunch, isDinner } from "@/proposal/domain/slot";
+import { SlotType, isLunch, isDinner } from "@/proposals/domain/slot";
 import { inject } from "vue";
-import type { Calendars } from "@/proposal/domain/day";
+import type { Calendars } from "@/proposals/domain/day";
 import type {
   Proposal,
   ProposalRepository,
   Proposals,
-} from "@/proposal/domain/proposal";
+} from "@/proposals/domain/proposal";
 import { ProposalInMemoryRepository } from "@/infrastructure/proposalInMemoryRepository";
 import dayjs from "dayjs";
 import { calendar } from "@/infrastructure/calendars";

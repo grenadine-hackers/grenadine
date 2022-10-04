@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import NearProposals from "@/proposal/NearProposals.vue";
-import { SlotType } from "@/proposal/domain/slot";
+import NearProposals from "@/proposals/NearProposals.vue";
+import { SlotType } from "@/proposals/domain/slot";
 </script>
 
 <template>
