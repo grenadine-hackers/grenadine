@@ -25,7 +25,7 @@ export const useNextMeetDays = (slotType: SlotType) => {
       const existingDays = days.filter(
         (day: Day) => proposal.date === day.date
       );
-      if (existingDays.length === 0) {
+      if (existingDays.length === 0 && days.length < 3) {
         days.push({ date: proposal.date } as Day);
       }
       return days;

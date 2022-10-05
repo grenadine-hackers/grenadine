@@ -7,7 +7,7 @@ import type { Day } from "@/proposals/domain/day";
 import type { ProposalCollection } from "@/proposals/domain/proposal";
 import { createProposal } from "@/proposals/domain/proposal";
 import { testSetup } from "@/testSetup";
-import { j3 } from "@/proposals/domain/day.fixture";
+import { j10, j11, j3, j5 } from "@/proposals/domain/day.fixture";
 
 export type SetupOptions = RenderOptions & { today?: Day } & {
   nearProposals?: ProposalCollection;
@@ -46,7 +46,7 @@ describe("NearProposals", () => {
         expect(noLunch).toBeTruthy();
       });
 
-      it("displays a single date when finding multiple proposals on a single day", () => {
+      it("displays a single date when finding multiple proposals on a single incomming day", () => {
         expect.assertions(2);
         render(
           NearProposals,
@@ -76,6 +76,70 @@ describe("NearProposals", () => {
 
         expect(availablesDates).toHaveLength(1);
         expect(displayedDate).toBeTruthy();
+      });
+
+      it("displays two dates when finding two proposals on an incoming days", () => {
+        expect.assertions(3);
+        render(
+          NearProposals,
+          testSetup({
+            props: { slotType },
+            nearProposals: [
+              createProposal({ slot: SlotType.LUNCH, ...j3 }),
+              createProposal({ slot: SlotType.LUNCH, ...j3 }),
+              createProposal({ slot: SlotType.LUNCH, ...j3 }),
+              createProposal({ slot: SlotType.LUNCH, ...j5 }),
+              createProposal({ slot: SlotType.LUNCH, ...j5 }),
+              createProposal({ slot: SlotType.LUNCH, ...j5 }),
+              createProposal({ slot: SlotType.DINNER, ...j3 }),
+              createProposal({ slot: SlotType.DINNER, ...j3 }),
+              createProposal({ slot: SlotType.DINNER, ...j3 }),
+              createProposal({ slot: SlotType.DINNER, ...j5 }),
+              createProposal({ slot: SlotType.DINNER, ...j5 }),
+              createProposal({ slot: SlotType.DINNER, ...j5 }),
+            ],
+          })
+        );
+
+        const availablesDates = screen.getAllByRole("listitem", {
+          name: "next date",
+        });
+        const firstDate = screen.getByText("lundi 17 octobre 2022");
+        const secondDate = screen.getByText("mercredi 19 octobre 2022");
+
+        expect(availablesDates).toHaveLength(2);
+        expect(firstDate).toBeTruthy();
+        expect(secondDate).toBeTruthy();
+      });
+
+      it("displays a maximum of three dates when finding more than three proposals on incoming days", () => {
+        expect.assertions(1);
+        render(
+          NearProposals,
+          testSetup({
+            props: { slotType },
+            nearProposals: [
+              createProposal({ slot: SlotType.LUNCH, ...j10 }),
+              createProposal({ slot: SlotType.LUNCH, ...j11 }),
+              createProposal({ slot: SlotType.LUNCH, ...j3 }),
+              createProposal({ slot: SlotType.LUNCH, ...j5 }),
+              createProposal({ slot: SlotType.LUNCH, ...j5 }),
+              createProposal({ slot: SlotType.LUNCH, ...j5 }),
+              createProposal({ slot: SlotType.DINNER, ...j10 }),
+              createProposal({ slot: SlotType.DINNER, ...j11 }),
+              createProposal({ slot: SlotType.DINNER, ...j3 }),
+              createProposal({ slot: SlotType.DINNER, ...j5 }),
+              createProposal({ slot: SlotType.DINNER, ...j5 }),
+              createProposal({ slot: SlotType.DINNER, ...j5 }),
+            ],
+          })
+        );
+
+        const availablesDates = screen.getAllByRole("listitem", {
+          name: "next date",
+        });
+
+        expect(availablesDates).toHaveLength(3);
       });
     }
   );
