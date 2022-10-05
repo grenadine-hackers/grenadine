@@ -18,7 +18,7 @@ const { dayFormat } = useDayFormat();
       <strong v-if="isDinner(slotType)">Aucun afterwork disponible</strong>
     </div>
     <ul v-else>
-      <li v-for="day in days" :key="day.date" aria-label="next date">
+      <li v-for="day in days" :key="day.date" aria-label="available date">
         {{ dayFormat(day) }}
       </li>
     </ul>

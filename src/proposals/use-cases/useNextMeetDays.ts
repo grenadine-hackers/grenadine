@@ -3,7 +3,11 @@ import { ProposalInMemoryRepository } from "@/infrastructure/proposalInMemoryRep
 import dayjs from "dayjs";
 import type { Calendars, Day, DayCollection } from "@/proposals/domain/day";
 import { calendar } from "@/infrastructure/calendars";
-import type { Proposal, Proposals } from "@/proposals/domain/proposal";
+import type {
+  Proposal,
+  ProposalCollection,
+  Proposals,
+} from "@/proposals/domain/proposal";
 import type { SlotType } from "@/proposals/domain/slot";
 
 export const useNextMeetDays = (slotType: SlotType) => {
@@ -18,10 +22,15 @@ export const useNextMeetDays = (slotType: SlotType) => {
   const withSlot = (proposal: Proposal, slotType: SlotType): boolean =>
     proposal.slot === slotType;
 
-  const days: DayCollection = getProposals()
+  const proposals: ProposalCollection = getProposals()
     .filter(withOutdated)
-    .filter((proposal: Proposal) => withSlot(proposal, slotType))
-    .reduce<DayCollection>((days, proposal) => {
+    .filter((proposal: Proposal) => withSlot(proposal, slotType));
+  const sortedProposals: ProposalCollection = [...proposals].sort((a, b) =>
+    dayjs(a.date).isSameOrAfter(b.date) ? 1 : -1
+  );
+
+  const days: DayCollection = sortedProposals.reduce<DayCollection>(
+    (days, proposal) => {
       const existingDays = days.filter(
         (day: Day) => proposal.date === day.date
       );
@@ -29,6 +38,8 @@ export const useNextMeetDays = (slotType: SlotType) => {
         days.push({ date: proposal.date } as Day);
       }
       return days;
-    }, []);
+    },
+    []
+  );
   return { days };
 };

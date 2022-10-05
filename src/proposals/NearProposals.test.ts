@@ -64,7 +64,7 @@ describe("NearProposals", () => {
         );
 
         const availablesDates = screen.getAllByRole("listitem", {
-          name: "next date",
+          name: "available date",
         });
         const displayedDate = screen.getByText("lundi 17 octobre 2022");
 
@@ -90,7 +90,7 @@ describe("NearProposals", () => {
         );
 
         const availablesDates = screen.getAllByRole("listitem", {
-          name: "next date",
+          name: "available date",
         });
         const firstDate = screen.getByText("lundi 17 octobre 2022");
         const secondDate = screen.getByText("mercredi 19 octobre 2022");
@@ -118,10 +118,38 @@ describe("NearProposals", () => {
         );
 
         const availablesDates = screen.getAllByRole("listitem", {
-          name: "next date",
+          name: "available date",
         });
 
         expect(availablesDates).toHaveLength(3);
+      });
+
+      it("displays only the three nearest dates", () => {
+        expect.assertions(4);
+        render(
+          NearProposals,
+          testSetup({
+            props: { slotType },
+            nearProposals: [
+              createProposal({ slot: slotType, ...j10 }),
+              createProposal({ slot: slotType, ...j11 }),
+              createProposal({ slot: slotType, ...j3 }),
+              createProposal({ slot: slotType, ...j5 }),
+              createProposal({ slot: slotType, ...j5 }),
+              createProposal({ slot: slotType, ...j5 }),
+            ],
+          })
+        );
+
+        const firstDate = screen.getByText("lundi 17 octobre 2022");
+        const secondDate = screen.getByText("mercredi 19 octobre 2022");
+        const thirdDate = screen.getByText("lundi 24 octobre 2022");
+        const fourthDate = screen.queryByText("mardi 25 octobre 2022");
+
+        expect(firstDate).toBeTruthy();
+        expect(secondDate).toBeTruthy();
+        expect(thirdDate).toBeTruthy();
+        expect(fourthDate).toBeFalsy();
       });
     }
   );
