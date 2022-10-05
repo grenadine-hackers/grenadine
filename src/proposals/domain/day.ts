@@ -2,9 +2,12 @@ export type Day = {
   date: string;
 };
 
+export type DayCollection = Day[];
+
 export interface Calendars {
   today: () => Day;
-  getNextWeeks: (startDay: Day) => Day[];
+  getNextWeeks: (startDay: Day) => DayCollection;
+  format: (day: Day) => string;
 }
 
 export const createDay = (date: {

@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
-import { render, screen, type RenderOptions } from "@testing-library/vue";
+import { render, type RenderOptions, screen } from "@testing-library/vue";
 
 import NearProposals from "@/proposals/NearProposals.vue";
 import { SlotType } from "@/proposals/domain/slot";
 import type { Day } from "@/proposals/domain/day";
 import type { ProposalCollection } from "@/proposals/domain/proposal";
-import { testSetup } from "../testSetup";
-import { jOutdated } from "@/proposals/domain/day.fixture";
-import { proposals } from "@/proposals/domain/proposal.fixture";
+import { createProposal } from "@/proposals/domain/proposal";
+import { testSetup } from "@/testSetup";
+import { j3 } from "@/proposals/domain/day.fixture";
 
 export type SetupOptions = RenderOptions & { today?: Day } & {
   nearProposals?: ProposalCollection;
@@ -46,30 +46,36 @@ describe("NearProposals", () => {
         expect(noLunch).toBeTruthy();
       });
 
-      it("finds proposals", () => {
-        expect.assertions(1);
-        render(
-          NearProposals,
-          testSetup({ props: { slotType }, nearProposals: proposals })
-        );
-
-        const availablesDates = screen.getAllByRole("article");
-        expect(availablesDates).toHaveLength(proposals.length);
-      });
-
-      it("finds outdated proposals", () => {
-        expect.assertions(1);
+      it("displays a single date when finding multiple proposals on a single day", () => {
+        expect.assertions(2);
         render(
           NearProposals,
           testSetup({
             props: { slotType },
-            nearProposals: proposals,
-            today: jOutdated,
+            nearProposals: [
+              createProposal({ slot: SlotType.LUNCH, ...j3 }),
+              createProposal({ slot: SlotType.LUNCH, ...j3 }),
+              createProposal({ slot: SlotType.LUNCH, ...j3 }),
+              createProposal({ slot: SlotType.LUNCH, ...j3 }),
+              createProposal({ slot: SlotType.LUNCH, ...j3 }),
+              createProposal({ slot: SlotType.LUNCH, ...j3 }),
+              createProposal({ slot: SlotType.DINNER, ...j3 }),
+              createProposal({ slot: SlotType.DINNER, ...j3 }),
+              createProposal({ slot: SlotType.DINNER, ...j3 }),
+              createProposal({ slot: SlotType.DINNER, ...j3 }),
+              createProposal({ slot: SlotType.DINNER, ...j3 }),
+              createProposal({ slot: SlotType.DINNER, ...j3 }),
+            ],
           })
         );
 
-        const noLunch = screen.getByText(expectedNoResults);
-        expect(noLunch).toBeTruthy();
+        const availablesDates = screen.getAllByRole("listitem", {
+          name: "next date",
+        });
+        const displayedDate = screen.getByText("lundi 17 octobre 2022");
+
+        expect(availablesDates).toHaveLength(1);
+        expect(displayedDate).toBeTruthy();
       });
     }
   );

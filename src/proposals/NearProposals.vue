@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { SlotType, isLunch, isDinner } from "@/proposals/domain/slot";
-import { useNearProposals } from "@/proposals/use-cases/useNearProposals";
+import { useNextMeetDays } from "@/proposals/use-cases/useNextMeetDays";
+import { useDayFormat } from "@/proposals/use-cases/useDayFormat";
 
-const { proposals } = useNearProposals();
-
-defineProps<{ slotType: SlotType }>();
+const props = defineProps<{ slotType: SlotType }>();
+const { days } = useNextMeetDays(props.slotType);
+const { dayFormat } = useDayFormat();
 </script>
 
 <template>
@@ -12,10 +13,14 @@ defineProps<{ slotType: SlotType }>();
     <h1 v-if="isLunch(slotType)">Prochain midi</h1>
     <h1 v-if="isDinner(slotType)">Prochain afterwork</h1>
 
-    <strong v-if="isLunch(slotType)">Aucun midi disponible</strong>
-    <strong v-if="isDinner(slotType)">Aucun afterwork disponible</strong>
-    <article v-for="proposal in proposals" :key="proposal.id">
-      {{ proposal.date }}
-    </article>
+    <div v-if="days.length === 0">
+      <strong v-if="isLunch(slotType)">Aucun midi disponible</strong>
+      <strong v-if="isDinner(slotType)">Aucun afterwork disponible</strong>
+    </div>
+    <ul v-else>
+      <li v-for="day in days" :key="day.date" aria-label="next date">
+        {{ dayFormat(day) }}
+      </li>
+    </ul>
   </div>
 </template>
