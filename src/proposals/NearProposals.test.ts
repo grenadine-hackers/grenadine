@@ -53,18 +53,12 @@ describe("NearProposals", () => {
           testSetup({
             props: { slotType },
             nearProposals: [
-              createProposal({ slot: SlotType.LUNCH, ...j3 }),
-              createProposal({ slot: SlotType.LUNCH, ...j3 }),
-              createProposal({ slot: SlotType.LUNCH, ...j3 }),
-              createProposal({ slot: SlotType.LUNCH, ...j3 }),
-              createProposal({ slot: SlotType.LUNCH, ...j3 }),
-              createProposal({ slot: SlotType.LUNCH, ...j3 }),
-              createProposal({ slot: SlotType.DINNER, ...j3 }),
-              createProposal({ slot: SlotType.DINNER, ...j3 }),
-              createProposal({ slot: SlotType.DINNER, ...j3 }),
-              createProposal({ slot: SlotType.DINNER, ...j3 }),
-              createProposal({ slot: SlotType.DINNER, ...j3 }),
-              createProposal({ slot: SlotType.DINNER, ...j3 }),
+              createProposal({ slot: slotType, ...j3 }),
+              createProposal({ slot: slotType, ...j3 }),
+              createProposal({ slot: slotType, ...j3 }),
+              createProposal({ slot: slotType, ...j3 }),
+              createProposal({ slot: slotType, ...j3 }),
+              createProposal({ slot: slotType, ...j3 }),
             ],
           })
         );
@@ -85,18 +79,12 @@ describe("NearProposals", () => {
           testSetup({
             props: { slotType },
             nearProposals: [
-              createProposal({ slot: SlotType.LUNCH, ...j3 }),
-              createProposal({ slot: SlotType.LUNCH, ...j3 }),
-              createProposal({ slot: SlotType.LUNCH, ...j3 }),
-              createProposal({ slot: SlotType.LUNCH, ...j5 }),
-              createProposal({ slot: SlotType.LUNCH, ...j5 }),
-              createProposal({ slot: SlotType.LUNCH, ...j5 }),
-              createProposal({ slot: SlotType.DINNER, ...j3 }),
-              createProposal({ slot: SlotType.DINNER, ...j3 }),
-              createProposal({ slot: SlotType.DINNER, ...j3 }),
-              createProposal({ slot: SlotType.DINNER, ...j5 }),
-              createProposal({ slot: SlotType.DINNER, ...j5 }),
-              createProposal({ slot: SlotType.DINNER, ...j5 }),
+              createProposal({ slot: slotType, ...j3 }),
+              createProposal({ slot: slotType, ...j3 }),
+              createProposal({ slot: slotType, ...j3 }),
+              createProposal({ slot: slotType, ...j5 }),
+              createProposal({ slot: slotType, ...j5 }),
+              createProposal({ slot: slotType, ...j5 }),
             ],
           })
         );
@@ -119,18 +107,12 @@ describe("NearProposals", () => {
           testSetup({
             props: { slotType },
             nearProposals: [
-              createProposal({ slot: SlotType.LUNCH, ...j10 }),
-              createProposal({ slot: SlotType.LUNCH, ...j11 }),
-              createProposal({ slot: SlotType.LUNCH, ...j3 }),
-              createProposal({ slot: SlotType.LUNCH, ...j5 }),
-              createProposal({ slot: SlotType.LUNCH, ...j5 }),
-              createProposal({ slot: SlotType.LUNCH, ...j5 }),
-              createProposal({ slot: SlotType.DINNER, ...j10 }),
-              createProposal({ slot: SlotType.DINNER, ...j11 }),
-              createProposal({ slot: SlotType.DINNER, ...j3 }),
-              createProposal({ slot: SlotType.DINNER, ...j5 }),
-              createProposal({ slot: SlotType.DINNER, ...j5 }),
-              createProposal({ slot: SlotType.DINNER, ...j5 }),
+              createProposal({ slot: slotType, ...j10 }),
+              createProposal({ slot: slotType, ...j11 }),
+              createProposal({ slot: slotType, ...j3 }),
+              createProposal({ slot: slotType, ...j5 }),
+              createProposal({ slot: slotType, ...j5 }),
+              createProposal({ slot: slotType, ...j5 }),
             ],
           })
         );

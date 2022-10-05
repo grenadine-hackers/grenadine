@@ -18,7 +18,7 @@ export const useNextMeetDays = (slotType: SlotType) => {
   const withSlot = (proposal: Proposal, slotType: SlotType): boolean =>
     proposal.slot === slotType;
 
-  const dates: DayCollection = getProposals()
+  const days: DayCollection = getProposals()
     .filter(withOutdated)
     .filter((proposal: Proposal) => withSlot(proposal, slotType))
     .reduce<DayCollection>((days, proposal) => {
@@ -30,5 +30,5 @@ export const useNextMeetDays = (slotType: SlotType) => {
       }
       return days;
     }, []);
-  return { days: dates };
+  return { days };
 };
