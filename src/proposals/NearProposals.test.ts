@@ -6,6 +6,7 @@ import { SlotType } from "@/proposals/domain/slot";
 import { createProposal } from "@/proposals/domain/proposal";
 import { testSetup } from "@/testSetup";
 import { j10, j11, j3, j5 } from "@/proposals/domain/day.fixture";
+import { defaultUser } from "@/proposals/domain/user.fixture";
 
 describe("NearProposals", () => {
   describe.each([
@@ -47,12 +48,12 @@ describe("NearProposals", () => {
           testSetup({
             props: { slotType },
             nearProposals: [
-              createProposal({ slot: slotType, ...j3 }),
-              createProposal({ slot: slotType, ...j3 }),
-              createProposal({ slot: slotType, ...j3 }),
-              createProposal({ slot: slotType, ...j3 }),
-              createProposal({ slot: slotType, ...j3 }),
-              createProposal({ slot: slotType, ...j3 }),
+              createProposal({ slot: slotType, ...j3 }, defaultUser),
+              createProposal({ slot: slotType, ...j3 }, defaultUser),
+              createProposal({ slot: slotType, ...j3 }, defaultUser),
+              createProposal({ slot: slotType, ...j3 }, defaultUser),
+              createProposal({ slot: slotType, ...j3 }, defaultUser),
+              createProposal({ slot: slotType, ...j3 }, defaultUser),
             ],
           })
         );
@@ -73,12 +74,12 @@ describe("NearProposals", () => {
           testSetup({
             props: { slotType },
             nearProposals: [
-              createProposal({ slot: slotType, ...j3 }),
-              createProposal({ slot: slotType, ...j3 }),
-              createProposal({ slot: slotType, ...j3 }),
-              createProposal({ slot: slotType, ...j5 }),
-              createProposal({ slot: slotType, ...j5 }),
-              createProposal({ slot: slotType, ...j5 }),
+              createProposal({ slot: slotType, ...j3 }, defaultUser),
+              createProposal({ slot: slotType, ...j3 }, defaultUser),
+              createProposal({ slot: slotType, ...j3 }, defaultUser),
+              createProposal({ slot: slotType, ...j5 }, defaultUser),
+              createProposal({ slot: slotType, ...j5 }, defaultUser),
+              createProposal({ slot: slotType, ...j5 }, defaultUser),
             ],
           })
         );
@@ -101,12 +102,12 @@ describe("NearProposals", () => {
           testSetup({
             props: { slotType },
             nearProposals: [
-              createProposal({ slot: slotType, ...j10 }),
-              createProposal({ slot: slotType, ...j11 }),
-              createProposal({ slot: slotType, ...j3 }),
-              createProposal({ slot: slotType, ...j5 }),
-              createProposal({ slot: slotType, ...j5 }),
-              createProposal({ slot: slotType, ...j5 }),
+              createProposal({ slot: slotType, ...j10 }, defaultUser),
+              createProposal({ slot: slotType, ...j11 }, defaultUser),
+              createProposal({ slot: slotType, ...j3 }, defaultUser),
+              createProposal({ slot: slotType, ...j5 }, defaultUser),
+              createProposal({ slot: slotType, ...j5 }, defaultUser),
+              createProposal({ slot: slotType, ...j5 }, defaultUser),
             ],
           })
         );
@@ -125,12 +126,12 @@ describe("NearProposals", () => {
           testSetup({
             props: { slotType },
             nearProposals: [
-              createProposal({ slot: slotType, ...j10 }),
-              createProposal({ slot: slotType, ...j11 }),
-              createProposal({ slot: slotType, ...j3 }),
-              createProposal({ slot: slotType, ...j5 }),
-              createProposal({ slot: slotType, ...j5 }),
-              createProposal({ slot: slotType, ...j5 }),
+              createProposal({ slot: slotType, ...j10 }, defaultUser),
+              createProposal({ slot: slotType, ...j11 }, defaultUser),
+              createProposal({ slot: slotType, ...j3 }, defaultUser),
+              createProposal({ slot: slotType, ...j5 }, defaultUser),
+              createProposal({ slot: slotType, ...j5 }, defaultUser),
+              createProposal({ slot: slotType, ...j5 }, defaultUser),
             ],
           })
         );
