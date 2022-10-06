@@ -21,9 +21,4 @@ describe("HomeView", () => {
       screen.getByRole("heading", { name: "Prochain afterwork" })
     ).toBeTruthy();
   });
-  it("has a call to action to add my availabities", () => {
-    expect.assertions(1);
-    render(HomeView, testSetup());
-    expect(screen.getByRole("button", { name: "Add my availabilities" }));
-  });
 });
