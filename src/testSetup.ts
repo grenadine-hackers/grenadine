@@ -1,5 +1,5 @@
 import type { Calendars, Day } from "./proposals/domain/day";
-import { ProposalInMemoryRepository } from "@/infrastructure/proposalInMemoryRepository";
+import { InMemoryProposals } from "@/infrastructure/inMemoryProposals";
 import type {
   ProposalCollection,
   Proposals,
@@ -29,7 +29,7 @@ export const testSetup = ({
   };
 
   const provideProposals: Proposals = {
-    ...ProposalInMemoryRepository,
+    ...InMemoryProposals,
     getProposals: () => nearProposals ?? [],
   };
 

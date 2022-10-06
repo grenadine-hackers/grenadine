@@ -1,5 +1,5 @@
 import { inject } from "vue";
-import { ProposalInMemoryRepository } from "@/infrastructure/proposalInMemoryRepository";
+import { InMemoryProposals } from "@/infrastructure/inMemoryProposals";
 import dayjs from "dayjs";
 import type { Calendars, Day, DayCollection } from "@/proposals/domain/day";
 import { calendar } from "@/infrastructure/calendars";
@@ -13,10 +13,7 @@ import { calendarSymbol, proposalSymbol } from "@/infrastructure/symbols";
 
 export const useNextMeetDays = (slotType: SlotType) => {
   const calendars = inject<Calendars>(calendarSymbol, calendar);
-  const { getProposals } = inject<Proposals>(
-    proposalSymbol,
-    ProposalInMemoryRepository
-  );
+  const { getProposals } = inject<Proposals>(proposalSymbol, InMemoryProposals);
   const withOutdated = (proposal: Proposal): boolean =>
     dayjs(proposal.date).isSameOrAfter(calendars.today().date);
 
