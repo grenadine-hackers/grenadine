@@ -1,17 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { render, type RenderOptions, screen } from "@testing-library/vue";
+import { render, screen } from "@testing-library/vue";
 
 import NearProposals from "@/proposals/NearProposals.vue";
 import { SlotType } from "@/proposals/domain/slot";
-import type { Day } from "@/proposals/domain/day";
-import type { ProposalCollection } from "@/proposals/domain/proposal";
 import { createProposal } from "@/proposals/domain/proposal";
 import { testSetup } from "@/testSetup";
 import { j10, j11, j3, j5 } from "@/proposals/domain/day.fixture";
-
-export type SetupOptions = RenderOptions & { today?: Day } & {
-  nearProposals?: ProposalCollection;
-};
 
 describe("NearProposals", () => {
   describe.each([
