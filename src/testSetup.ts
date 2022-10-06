@@ -10,6 +10,7 @@ import { j0 } from "./proposals/domain/day.fixture";
 import { calendarSymbol, proposalSymbol } from "@/infrastructure/symbols";
 import { userPlugin } from "@/proposals/userPlugin";
 import type { User } from "@/proposals/domain/user";
+import { InMemoryUsers } from "@/infrastructure/inMemoryUsers";
 
 export type SetupOptions = RenderOptions & { today?: Day } & {
   nearProposals?: ProposalCollection;
@@ -38,7 +39,7 @@ export const testSetup = ({
         [calendarSymbol]: provideCalendar,
         [proposalSymbol]: provideProposals,
       },
-      plugins: [userPlugin(user)],
+      plugins: [userPlugin(InMemoryUsers(), user)],
     },
     ...options,
   };

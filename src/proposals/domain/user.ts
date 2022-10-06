@@ -3,5 +3,6 @@ export type User = {
 };
 
 export type Users = {
+  setCurrentUser: (user: User) => void;
   getCurrentUser: () => User;
 };
