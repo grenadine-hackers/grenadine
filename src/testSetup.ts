@@ -5,6 +5,7 @@ import type { RenderOptions } from "@testing-library/vue";
 import type { SetupOptions } from "./proposals/NearProposals.test";
 import { calendar } from "@/infrastructure/calendars";
 import { j0 } from "./proposals/domain/day.fixture";
+import { calendarSymbol, proposalSymbol } from "@/infrastructure/symbols";
 
 export const testSetup = ({
   today,
@@ -25,7 +26,10 @@ export const testSetup = ({
 
   return {
     global: {
-      provide: { calendars: provideCalendar, proposals: provideProposals },
+      provide: {
+        [calendarSymbol]: provideCalendar,
+        [proposalSymbol]: provideProposals,
+      },
     },
     ...options,
   };

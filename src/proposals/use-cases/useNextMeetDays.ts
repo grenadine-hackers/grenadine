@@ -9,11 +9,12 @@ import type {
   Proposals,
 } from "@/proposals/domain/proposal";
 import type { SlotType } from "@/proposals/domain/slot";
+import { calendarSymbol, proposalSymbol } from "@/infrastructure/symbols";
 
 export const useNextMeetDays = (slotType: SlotType) => {
-  const calendars = inject<Calendars>("calendars", calendar);
+  const calendars = inject<Calendars>(calendarSymbol, calendar);
   const { getProposals } = inject<Proposals>(
-    "proposals",
+    proposalSymbol,
     ProposalInMemoryRepository
   );
   const withOutdated = (proposal: Proposal): boolean =>
