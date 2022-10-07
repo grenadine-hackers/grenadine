@@ -3,7 +3,7 @@
   <ul>
     <li v-for="day in nextWeeks" :key="day.date" aria-label="date">
       {{ dayFormat(day) }}
-      <AddProposal />
+      <AddProposal :day="day" />
     </li>
   </ul>
 </template>

@@ -12,13 +12,17 @@ import { userPlugin } from "@/proposals/userPlugin";
 import type { User } from "@/proposals/domain/user";
 import { InMemoryUsers } from "@/infrastructure/inMemoryUsers";
 
-export type SetupOptions = RenderOptions & { today?: Day } & {
+export type SetupOptions = RenderOptions & {
+  today?: Day;
   nearProposals?: ProposalCollection;
-} & { user?: User };
+  user?: User;
+  proposals?: Proposals;
+};
 export const testSetup = ({
   today,
   nearProposals,
   user,
+  proposals,
   ...options
 }: SetupOptions = {}): RenderOptions => {
   const currentDay = today ?? j0;
@@ -28,7 +32,7 @@ export const testSetup = ({
     getNextWeeks: (): Day[] => calendar.getNextWeeks(currentDay),
   };
 
-  const provideProposals: Proposals = {
+  const provideProposals: Proposals = proposals ?? {
     ...InMemoryProposals,
     getProposals: () => nearProposals ?? [],
   };

@@ -15,7 +15,7 @@ export type ProposalCollection = Proposal[];
 
 export interface Proposals {
   createProposal(proposal: Partial<Proposal>, user: User): Proposal;
-
+  addProposal(proposal: Proposal): void;
   getProposals(): ProposalCollection;
 }
 
