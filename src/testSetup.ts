@@ -25,7 +25,7 @@ export const testSetup = ({
   today,
   nearProposals = [],
   user,
-  proposals,q
+  proposals,
   ...options
 }: SetupOptions = {}): RenderOptions => {
   const currentDay = today ?? j0;
