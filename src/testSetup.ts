@@ -17,13 +17,13 @@ import { InMemoryUsers } from "@/infrastructure/inMemoryUsers";
 
 export type SetupOptions = RenderOptions & {
   today?: Day;
-  nearProposals?: ProposalCollection;
+  foundProposals?: ProposalCollection;
   user?: User;
   proposals?: Proposals;
 };
 export const testSetup = ({
   today,
-  nearProposals = [],
+  foundProposals = [],
   user,
   proposals,
   ...options
@@ -46,7 +46,7 @@ export const testSetup = ({
       plugins: [
         createTestingPinia({
           createSpy: sinon.spy,
-          initialState: { proposals: { proposals: nearProposals } },
+          initialState: { proposals: { proposals: foundProposals } },
         }),
         userPlugin(InMemoryUsers(), user),
       ],
