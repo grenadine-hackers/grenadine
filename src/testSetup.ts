@@ -1,3 +1,6 @@
+import sinon from "sinon";
+import { createTestingPinia } from "@pinia/testing";
+
 import type { Calendars, Day } from "./proposals/domain/day";
 import { InMemoryProposals } from "@/infrastructure/inMemoryProposals";
 import type {
@@ -20,9 +23,9 @@ export type SetupOptions = RenderOptions & {
 };
 export const testSetup = ({
   today,
-  nearProposals,
+  nearProposals = [],
   user,
-  proposals,
+  proposals,q
   ...options
 }: SetupOptions = {}): RenderOptions => {
   const currentDay = today ?? j0;
@@ -32,10 +35,7 @@ export const testSetup = ({
     getNextWeeks: (): Day[] => calendar.getNextWeeks(currentDay),
   };
 
-  const provideProposals: Proposals = proposals ?? {
-    ...InMemoryProposals,
-    getProposals: () => nearProposals ?? [],
-  };
+  const provideProposals: Proposals = proposals ?? InMemoryProposals;
 
   return {
     global: {
@@ -43,7 +43,13 @@ export const testSetup = ({
         [calendarSymbol]: provideCalendar,
         [proposalSymbol]: provideProposals,
       },
-      plugins: [userPlugin(InMemoryUsers(), user)],
+      plugins: [
+        createTestingPinia({
+          createSpy: sinon.spy,
+          initialState: { proposals: { proposals: nearProposals } },
+        }),
+        userPlugin(InMemoryUsers(), user),
+      ],
     },
     ...options,
   };

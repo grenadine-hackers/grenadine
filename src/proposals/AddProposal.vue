@@ -9,6 +9,7 @@ import { useAddProposal } from "@/proposals/use-cases/useAddProposal";
 import { SlotType } from "@/proposals/domain/slot";
 import { useCurrentUser } from "@/proposals/use-cases/useCurrentUser";
 import { createProposal } from "@/proposals/domain/proposal";
+import { useGetProposals } from "@/proposals/use-cases/useGetProposals";
 
 const lunch = SlotType.LUNCH;
 const afterwork = SlotType.DINNER;
@@ -16,6 +17,7 @@ const afterwork = SlotType.DINNER;
 const { addProposal } = useAddProposal();
 const user = useCurrentUser();
 const day = defineProps<{ day: Day }>();
+const { proposals } = useGetProposals();
 
 const newProposal = (slotType: SlotType) => {
   const proposal = createProposal({ slot: slotType, ...day }, user);

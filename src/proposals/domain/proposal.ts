@@ -3,6 +3,7 @@ import { SlotType } from "./slot";
 import type { Day } from "@/proposals/domain/day";
 import { v4 as uuid } from "uuid";
 import type { User } from "@/proposals/domain/user";
+import dayjs from "dayjs";
 
 export type ProposalId = string;
 
@@ -15,7 +16,9 @@ export type ProposalCollection = Proposal[];
 
 export interface Proposals {
   createProposal(proposal: Partial<Proposal>, user: User): Proposal;
+
   addProposal(proposal: Proposal): void;
+
   getProposals(): ProposalCollection;
 }
 
@@ -30,3 +33,7 @@ export const createProposal = (
     user,
   };
 };
+export const withOutdated = (proposal: Proposal, today: Day): boolean =>
+  dayjs(proposal.date).isSameOrAfter(today.date);
+export const withSlot = (proposal: Proposal, slotType: SlotType): boolean =>
+  proposal.slot === slotType;
