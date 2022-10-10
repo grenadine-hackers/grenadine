@@ -1,15 +1,9 @@
 import { defineStore } from "pinia";
 import type { ProposalCollection } from "@/proposals/domain/proposal";
+import { ref } from "vue";
 
-type ProposalState = {
-  proposals: ProposalCollection;
-};
+export const useProposalStore = defineStore("proposals", () => {
+  const proposals = ref<ProposalCollection>([]);
 
-export const useProposalStore = defineStore("proposals", {
-  state: (): ProposalState => ({
-    proposals: [],
-  }),
-  getters: {
-    getProposals: (state): ProposalCollection => state.proposals,
-  },
+  return { proposals };
 });

@@ -47,7 +47,7 @@ describe("NearProposals", () => {
           NearProposals,
           testSetup({
             props: { slotType },
-            nearProposals: [
+            foundProposals: [
               createProposal({ slot: slotType, ...j3 }, defaultUser),
               createProposal({ slot: slotType, ...j3 }, defaultUser),
               createProposal({ slot: slotType, ...j3 }, defaultUser),
@@ -73,7 +73,7 @@ describe("NearProposals", () => {
           NearProposals,
           testSetup({
             props: { slotType },
-            nearProposals: [
+            foundProposals: [
               createProposal({ slot: slotType, ...j3 }, defaultUser),
               createProposal({ slot: slotType, ...j3 }, defaultUser),
               createProposal({ slot: slotType, ...j3 }, defaultUser),
@@ -101,7 +101,7 @@ describe("NearProposals", () => {
           NearProposals,
           testSetup({
             props: { slotType },
-            nearProposals: [
+            foundProposals: [
               createProposal({ slot: slotType, ...j10 }, defaultUser),
               createProposal({ slot: slotType, ...j11 }, defaultUser),
               createProposal({ slot: slotType, ...j3 }, defaultUser),
@@ -125,7 +125,7 @@ describe("NearProposals", () => {
           NearProposals,
           testSetup({
             props: { slotType },
-            nearProposals: [
+            foundProposals: [
               createProposal({ slot: slotType, ...j10 }, defaultUser),
               createProposal({ slot: slotType, ...j11 }, defaultUser),
               createProposal({ slot: slotType, ...j3 }, defaultUser),
