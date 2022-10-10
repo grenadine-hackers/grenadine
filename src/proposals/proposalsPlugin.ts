@@ -6,13 +6,12 @@ import type {
   Proposals,
 } from "@/proposals/domain/proposal";
 import { createProposal } from "@/proposals/domain/proposal";
-import { useProposalStore } from "@/stores/proposals";
-import { useGetProposals } from "@/proposals/use-cases/useGetProposals";
+
+import { useProposalStore } from "@/stores/ProposalStore";
 
 export const proposalsPlugin = () => ({
   install(app: App) {
     const proposalStore = useProposalStore();
-    const { proposals } = useGetProposals();
     app.provide<Proposals>(proposalSymbol, {
       addProposal: (proposal: Proposal) => {
         proposalStore.$patch((state) => {
@@ -21,7 +20,7 @@ export const proposalsPlugin = () => ({
       },
       createProposal,
       getProposals: (): ProposalCollection => {
-        return proposals;
+        return proposalStore.proposals;
       },
     });
   },

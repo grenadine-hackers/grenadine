@@ -6,14 +6,14 @@ import type { Proposal, ProposalCollection } from "@/proposals/domain/proposal";
 import { withOutdated, withSlot } from "@/proposals/domain/proposal";
 import type { SlotType } from "@/proposals/domain/slot";
 import { calendarSymbol } from "@/infrastructure/symbols";
-import { useGetProposals } from "@/proposals/use-cases/useGetProposals";
+import { useProposalStore } from "@/stores/ProposalStore";
 
 export const useNextMeetDays = (slotType: SlotType) => {
   const calendars = inject<Calendars>(calendarSymbol, calendar);
 
-  const { proposals: storedProposals } = useGetProposals();
+  const proposalStore = useProposalStore();
 
-  const proposals: ProposalCollection = storedProposals
+  const proposals: ProposalCollection = proposalStore.proposals
     .filter((proposal: Proposal) => withOutdated(proposal, calendars.today()))
     .filter((proposal: Proposal) => withSlot(proposal, slotType));
   const sortedProposals: ProposalCollection = [...proposals].sort((a, b) =>
