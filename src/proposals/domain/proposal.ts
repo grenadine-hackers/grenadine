@@ -1,6 +1,6 @@
 import type { Slot } from "./slot";
 import { SlotType } from "./slot";
-import type { Day } from "@/proposals/domain/day";
+import type { Day, DayCollection } from "@/proposals/domain/day";
 import { v4 as uuid } from "uuid";
 import type { User } from "@/proposals/domain/user";
 import dayjs from "dayjs";
@@ -35,5 +35,30 @@ export const createProposal = (
 };
 export const withOutdated = (proposal: Proposal, today: Day): boolean =>
   dayjs(proposal.date).isSameOrAfter(today.date);
+
 export const withSlot = (proposal: Proposal, slotType: SlotType): boolean =>
   proposal.slot === slotType;
+
+export const toDayReducer = (days: DayCollection, proposal: Proposal) => {
+  const existingDays = days.filter((day: Day) => proposal.date === day.date);
+  if (existingDays.length === 0 && days.length < 3) {
+    days.push({ date: proposal.date } as Day);
+  }
+  return days;
+};
+export const sortByDate = (proposals: ProposalCollection): ProposalCollection =>
+  proposals
+    .slice()
+    .sort((a, b) => (dayjs(a.date).isSameOrAfter(b.date) ? 1 : -1));
+
+export const nextMeetDays = (
+  proposals: ProposalCollection,
+  today: Day,
+  slotType: SlotType
+): DayCollection => {
+  return sortByDate(
+    proposals
+      .filter((proposal: Proposal) => withOutdated(proposal, today))
+      .filter((proposal: Proposal) => withSlot(proposal, slotType))
+  ).reduce<DayCollection>(toDayReducer, []);
+};
