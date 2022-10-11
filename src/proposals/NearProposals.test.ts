@@ -61,7 +61,9 @@ describe("NearProposals", () => {
         const availablesDates = screen.getAllByRole("listitem", {
           name: "available date",
         });
-        const displayedDate = screen.getByText("lundi 17 octobre 2022");
+        const displayedDate = screen.getByText(
+          "lundi 17 octobre 2022 (6 votes)"
+        );
 
         expect(availablesDates).toHaveLength(1);
         expect(displayedDate).toBeTruthy();
@@ -87,8 +89,10 @@ describe("NearProposals", () => {
         const availablesDates = screen.getAllByRole("listitem", {
           name: "available date",
         });
-        const firstDate = screen.getByText("lundi 17 octobre 2022");
-        const secondDate = screen.getByText("mercredi 19 octobre 2022");
+        const firstDate = screen.getByText("lundi 17 octobre 2022 (3 votes)");
+        const secondDate = screen.getByText(
+          "mercredi 19 octobre 2022 (3 votes)"
+        );
 
         expect(availablesDates).toHaveLength(2);
         expect(firstDate).toBeTruthy();
@@ -136,10 +140,12 @@ describe("NearProposals", () => {
           })
         );
 
-        const firstDate = screen.getByText("lundi 17 octobre 2022");
-        const secondDate = screen.getByText("mercredi 19 octobre 2022");
-        const thirdDate = screen.getByText("lundi 24 octobre 2022");
-        const fourthDate = screen.queryByText("mardi 25 octobre 2022");
+        const firstDate = screen.getByText("lundi 17 octobre 2022 (1 vote)");
+        const secondDate = screen.getByText(
+          "mercredi 19 octobre 2022 (3 votes)"
+        );
+        const thirdDate = screen.getByText("lundi 24 octobre 2022 (1 vote)");
+        const fourthDate = screen.queryByText("mardi 25 octobre 2022 (1 vote)");
 
         expect(firstDate).toBeTruthy();
         expect(secondDate).toBeTruthy();
