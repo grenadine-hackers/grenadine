@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import { isDinner, isLunch, SlotType } from "@/proposals/domain/slot";
-import { useNextMeetDays } from "@/proposals/use-cases/useNextMeetDays";
 import { useDayFormat } from "@/proposals/use-cases/useDayFormat";
 import { useProposalStore } from "@/stores/ProposalStore";
+import { computed } from "vue";
 
 const props = defineProps<{ slotType: SlotType }>();
-const { days } = useNextMeetDays(props.slotType);
+
 const { dayFormat } = useDayFormat();
-const store = useProposalStore();
+const proposalStore = useProposalStore();
+
+const days = computed(() =>
+  isLunch(props.slotType) ? proposalStore.nextLunch : proposalStore.nextDinner
+);
 </script>
 
 <template>
@@ -25,9 +29,4 @@ const store = useProposalStore();
       </li>
     </ul>
   </div>
-  <ul>
-    <li v-for="proposal in store.proposals" :key="proposal.id">
-      {{ proposal.date }}}
-    </li>
-  </ul>
 </template>

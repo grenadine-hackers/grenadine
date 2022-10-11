@@ -34,7 +34,7 @@ export const createProposal = (
   };
 };
 export const withOutdated = (proposal: Proposal, today: Day): boolean =>
-  dayjs(proposal.date).isSameOrAfter(today.date);
+  dayjs(proposal.date).isAfter(dayjs(today.date).subtract(1, "day"));
 
 export const withSlot = (proposal: Proposal, slotType: SlotType): boolean =>
   proposal.slot === slotType;
