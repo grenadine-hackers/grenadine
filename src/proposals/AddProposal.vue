@@ -15,10 +15,10 @@ const afterwork = SlotType.DINNER;
 
 const { addProposal } = useAddProposal();
 const user = useCurrentUser();
-const day = defineProps<{ day: Day }>();
+const props = defineProps<{ day: Day }>();
 
 const newProposal = (slotType: SlotType) => {
-  const proposal = createProposal({ slot: slotType, ...day }, user);
+  const proposal = createProposal({ slot: slotType, ...props.day }, user);
   addProposal(proposal);
 };
 </script>
