@@ -11,7 +11,7 @@ import type { RenderOptions } from "@testing-library/vue";
 import { calendar } from "@/infrastructure/calendars";
 import { j0 } from "./proposals/domain/day.fixture";
 import { calendarSymbol, proposalSymbol } from "@/infrastructure/symbols";
-import { userPlugin } from "@/proposals/userPlugin";
+import { userPlugin } from "@/plugins/userPlugin";
 import type { User } from "@/proposals/domain/user";
 import { InMemoryUsers } from "@/infrastructure/inMemoryUsers";
 

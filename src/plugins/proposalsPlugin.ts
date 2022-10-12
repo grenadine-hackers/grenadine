@@ -19,7 +19,7 @@ export const proposalsPlugin = () => ({
         });
       },
       createProposal,
-      getProposals: (): ProposalCollection => {
+      loadProposals: (): ProposalCollection => {
         return proposalStore.proposals;
       },
     });

@@ -12,6 +12,7 @@
     "webstorm-integration": "vitest --watch --environment jsdom --reporter=dot --reporter=json --outputFile=.vitest-result.json"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.0.0",
     "dayjs": "^1.11.5",
     "pinia": "^2.0.21",
     "uuid": "^9.0.0",

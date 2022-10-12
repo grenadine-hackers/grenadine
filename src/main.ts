@@ -5,9 +5,9 @@ import App from "./App.vue";
 import router from "./router";
 
 import "./assets/main.css";
-import { userPlugin } from "@/proposals/userPlugin";
+import { userPlugin } from "@/plugins/userPlugin";
 import { InMemoryUsers } from "@/infrastructure/inMemoryUsers";
-import { proposalsPlugin } from "@/proposals/proposalsPlugin";
+import { proposalsPlugin } from "@/plugins/proposalsPlugin";
 
 const app = createApp(App);
 
