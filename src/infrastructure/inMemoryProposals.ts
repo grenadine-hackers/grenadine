@@ -12,5 +12,5 @@ export const InMemoryProposals: Proposals = {
     proposals = [...proposals, proposal];
   },
   createProposal,
-  loadProposals: () => proposals,
+  loadProposals: async () => proposals,
 };

@@ -22,7 +22,7 @@ export interface Proposals {
 
   addProposal(proposal: Proposal): void;
 
-  loadProposals(): ProposalCollection;
+  loadProposals(): Promise<ProposalCollection>;
 }
 
 export const createProposal = (

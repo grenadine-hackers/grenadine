@@ -8,20 +8,29 @@ import type {
 import { createProposal } from "@/proposals/domain/proposal";
 
 import { useProposalStore } from "@/stores/ProposalStore";
+import { supabaseProposals } from "@/infrastructure/supabaseProposals";
 
 export const proposalsPlugin = () => ({
-  install(app: App) {
+  async install(app: App) {
     const proposalStore = useProposalStore();
-    app.provide<Proposals>(proposalSymbol, {
+    const proposals: Proposals = {
       addProposal: (proposal: Proposal) => {
         proposalStore.$patch((state) => {
           state.proposals.push(proposal);
         });
+        supabaseProposals.addProposal(proposal);
       },
       createProposal,
-      loadProposals: (): ProposalCollection => {
-        return proposalStore.proposals;
+      loadProposals: async (): Promise<ProposalCollection> => {
+        const proposals = await supabaseProposals.loadProposals();
+        console.log(proposals);
+        proposalStore.$patch((state) => {
+          state.proposals = proposals;
+        });
+        return [];
       },
-    });
+    };
+    app.provide<Proposals>(proposalSymbol, proposals);
+    await proposals.loadProposals();
   },
 });
