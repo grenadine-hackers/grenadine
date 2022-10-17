@@ -4,6 +4,6 @@ import { userSymbol } from "@/infrastructure/symbols";
 import { InMemoryUsers } from "@/infrastructure/inMemoryUsers";
 
 export const useCurrentUser = (): User => {
-  const { getCurrentUser } = inject<Users>(userSymbol, InMemoryUsers());
+  const { getCurrentUser } = inject<Users>(userSymbol, InMemoryUsers);
   return getCurrentUser();
 };

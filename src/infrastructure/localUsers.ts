@@ -10,7 +10,7 @@ const setCurrentUser = (user: User) => {
 const getCurrentUser = (): User => {
   return currentUser;
 };
-export const InMemoryUsers: Users = {
+export const LocalUsers: Users = {
   setCurrentUser,
   getCurrentUser,
 };

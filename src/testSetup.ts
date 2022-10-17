@@ -48,7 +48,7 @@ export const testSetup = ({
           createSpy: sinon.spy,
           initialState: { proposals: { proposals: foundProposals } },
         }),
-        userPlugin(InMemoryUsers(), user),
+        userPlugin(InMemoryUsers, user),
       ],
     },
     ...options,
