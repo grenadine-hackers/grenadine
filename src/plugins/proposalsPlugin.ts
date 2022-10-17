@@ -23,7 +23,6 @@ export const proposalsPlugin = () => ({
       createProposal,
       loadProposals: async (): Promise<ProposalCollection> => {
         const proposals = await supabaseProposals.loadProposals();
-        console.log(proposals);
         proposalStore.$patch((state) => {
           state.proposals = proposals;
         });
