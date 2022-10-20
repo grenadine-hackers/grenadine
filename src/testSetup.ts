@@ -8,7 +8,7 @@ import type {
   Proposals,
 } from "./proposals/domain/proposal";
 import type { RenderOptions } from "@testing-library/vue";
-import { calendar } from "@/infrastructure/calendars";
+import { calendars } from "@/infrastructure/calendars";
 import { j0 } from "./proposals/domain/day.fixture";
 import { calendarSymbol } from "@/infrastructure/symbols";
 import { userPlugin } from "@/plugins/userPlugin";
@@ -31,9 +31,9 @@ export const testSetup = ({
 }: SetupOptions = {}): RenderOptions => {
   const currentDay = today ?? j0;
   const provideCalendar: Calendars = {
-    ...calendar,
+    ...calendars,
     today: () => currentDay,
-    getNextWeeks: (): Day[] => calendar.getNextWeeks(currentDay),
+    getNextWeeks: (): Day[] => calendars.getNextWeeks(currentDay),
   };
 
   return {

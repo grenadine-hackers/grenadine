@@ -36,8 +36,12 @@ export const createProposal = (
     user,
   };
 };
-export const withOutdated = (proposal: Proposal, today: Day): boolean =>
-  dayjs(proposal.date).isAfter(dayjs(today.date).subtract(1, "day"));
+export const withOutdated = (proposal: Proposal, today: Day): boolean => {
+  return dayjs(proposal.date).isSameOrAfter(
+    dayjs(today.date).subtract(1, "day"),
+    "day"
+  );
+};
 
 export const withSlot = (proposal: Proposal, slotType: SlotType): boolean =>
   proposal.slot === slotType;
@@ -50,7 +54,9 @@ export const sortByVotes = (
 export const sortByDate = (
   proposals: VotedProposalCollection
 ): VotedProposalCollection =>
-  proposals.slice().sort((a, b) => (dayjs(a.date).isBefore(b.date) ? 0 : -1));
+  proposals
+    .slice()
+    .sort((a, b) => (dayjs(a.date).isSameOrBefore(b.date) ? 0 : -1));
 
 export function findByDate<T extends Proposal>(
   collection: T[],
@@ -99,21 +105,14 @@ export const toVote = (
   return sortByVotes(sortByDate(votes));
 };
 
-export const topVotes = (
-  voteCollection: VotedProposalCollection
-): VotedProposalCollection => {
-  return voteCollection; //.slice(0, 3);
-};
-
 export const nextMeetDays = (
   proposals: ProposalCollection,
   today: Day,
   slotType: SlotType
 ): VotedProposalCollection => {
-  return topVotes(
-    proposals
-      .filter((proposal: Proposal) => withOutdated(proposal, today))
-      .filter((proposal: Proposal) => withSlot(proposal, slotType))
-      .reduce<VotedProposalCollection>(toVote, [])
-  );
+  return proposals
+    .reduce<VotedProposalCollection>(toVote, [])
+    .filter((proposal: Proposal) => withOutdated(proposal, today))
+    .filter((proposal: Proposal) => withSlot(proposal, slotType))
+    .slice(0, 3);
 };

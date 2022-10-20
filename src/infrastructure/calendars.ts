@@ -26,7 +26,6 @@ const getNextWeeks = (startDay: Day): Day[] => {
     }
     startDate = startDate.add(1, "day");
   }
-  console.log(startDay, finalPeriod);
   return finalPeriod;
 };
 
@@ -41,7 +40,7 @@ const format = (day: Day): string => {
   });
 };
 
-export const calendar: Calendar = {
+export const calendars: Calendar = {
   today,
   getNextWeeks,
   format,

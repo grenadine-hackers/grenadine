@@ -3,14 +3,18 @@ import { isDinner, isLunch, SlotType } from "@/proposals/domain/slot";
 import { useDayFormat } from "@/proposals/use-cases/useDayFormat";
 import { useProposalStore } from "@/stores/ProposalStore";
 import { computed } from "vue";
+import { useToday } from "@/proposals/use-cases/useToday";
 
 const props = defineProps<{ slotType: SlotType }>();
 
+const today = useToday();
 const { dayFormat } = useDayFormat();
 const proposalStore = useProposalStore();
 
 const votes = computed(() =>
-  isLunch(props.slotType) ? proposalStore.nextLunch : proposalStore.nextDinner
+  isLunch(props.slotType)
+    ? proposalStore.nextLunch(today())
+    : proposalStore.nextDinner(today())
 );
 
 const displayVote = (voteCount: number) =>

@@ -1,21 +1,23 @@
 import { defineStore } from "pinia";
-import type {
-  ProposalCollection,
-  VotedProposalCollection,
+import {
+  nextMeetDays,
+  type ProposalCollection,
 } from "@/proposals/domain/proposal";
-import { nextMeetDays } from "@/proposals/domain/proposal";
-import { computed, ref } from "vue";
 import { SlotType } from "@/proposals/domain/slot";
-import { calendar } from "@/infrastructure/calendars";
+import type { Day } from "@/proposals/domain/day";
 
-export const useProposalStore = defineStore("proposals", () => {
-  const proposals = ref<ProposalCollection>([]);
-
-  const nextLunch = computed<VotedProposalCollection>(() =>
-    nextMeetDays(proposals.value, calendar.today(), SlotType.LUNCH)
-  );
-  const nextDinner = computed<VotedProposalCollection>(() =>
-    nextMeetDays(proposals.value, calendar.today(), SlotType.DINNER)
-  );
-  return { proposals, nextLunch, nextDinner };
+export const useProposalStore = defineStore("proposals", {
+  state: (): { proposals: ProposalCollection } => ({
+    proposals: [],
+  }),
+  getters: {
+    nextLunch: (state) => {
+      return (today: Day) =>
+        nextMeetDays(state.proposals, today, SlotType.LUNCH);
+    },
+    nextDinner: (state) => {
+      return (today: Day) =>
+        nextMeetDays(state.proposals, today, SlotType.DINNER);
+    },
+  },
 });
