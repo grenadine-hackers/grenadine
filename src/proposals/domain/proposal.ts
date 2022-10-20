@@ -54,13 +54,18 @@ export const sortByDate = (
     .slice()
     .sort((a, b) => (dayjs(a.date).isSameOrBefore(b.date) ? 0 : -1));
 
+export function findByDate<T extends Proposal>(
+  collection: T[],
+  date: Day
+): T | undefined {
+  return collection.find((d: T) => d.date === date.date) as T;
+}
+
 export const toVoteReducer = (
   voteCollection: VotedProposalCollection,
   proposal: Proposal
 ) => {
-  const vote = voteCollection.find(
-    (voted: VotedProposal) => voted.date === proposal.date
-  );
+  const vote = findByDate<VotedProposal>(voteCollection, proposal);
 
   if (vote) {
     voteCollection
@@ -80,6 +85,5 @@ export const nextMeetDays = (
   return proposals
     .filter((proposal: Proposal) => withOutdated(proposal, today))
     .filter((proposal: Proposal) => withSlot(proposal, slotType))
-    .reduce<VotedProposalCollection>(toVoteReducer, [])
-    .slice(0, 3);
+    .reduce<VotedProposalCollection>(toVoteReducer, []);
 };
