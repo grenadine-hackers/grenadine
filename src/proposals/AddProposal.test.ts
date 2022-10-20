@@ -31,7 +31,7 @@ describe("AddProposal", () => {
   it.skip("calls add proposals when clicking on a valid proposal", async () => {
     expect.assertions(1);
     const proposals: Proposals = {
-      ...InMemoryProposals,
+      ...InMemoryProposals(),
       addProposal: () => {},
     };
 

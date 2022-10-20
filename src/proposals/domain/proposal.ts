@@ -50,9 +50,7 @@ export const sortByVotes = (
 export const sortByDate = (
   proposals: VotedProposalCollection
 ): VotedProposalCollection =>
-  proposals
-    .slice()
-    .sort((a, b) => (dayjs(a.date).isSameOrBefore(b.date) ? 0 : -1));
+  proposals.slice().sort((a, b) => (dayjs(a.date).isBefore(b.date) ? 0 : -1));
 
 export function findByDate<T extends Proposal>(
   collection: T[],
@@ -61,20 +59,50 @@ export function findByDate<T extends Proposal>(
   return collection.find((d: T) => d.date === date.date) as T;
 }
 
-export const toVoteReducer = (
+function incrementVote(
+  voteCollection: VotedProposalCollection,
+  vote: VotedProposal
+): VotedProposalCollection {
+  voteCollection
+    .filter((voted) => voted !== vote)
+    .push({ ...vote, vote: vote.vote++ } as VotedProposal);
+  return voteCollection;
+}
+
+function insertVote(
+  voteCollection: VotedProposalCollection,
+  proposal: Proposal
+): VotedProposalCollection {
+  return [...voteCollection, { ...proposal, vote: 1 } as VotedProposal];
+}
+
+function addVote(
+  voteCollection: VotedProposalCollection,
+  proposal: Proposal
+): VotedProposalCollection {
+  const vote = findByDate<VotedProposal>(voteCollection, proposal);
+  let votes: VotedProposalCollection;
+  if (vote) {
+    votes = incrementVote(voteCollection, vote);
+  } else {
+    votes = insertVote(voteCollection, proposal);
+  }
+
+  return votes;
+}
+
+export const toVote = (
   voteCollection: VotedProposalCollection,
   proposal: Proposal
 ) => {
-  const vote = findByDate<VotedProposal>(voteCollection, proposal);
+  const votes = addVote(voteCollection, proposal);
+  return sortByVotes(sortByDate(votes));
+};
 
-  if (vote) {
-    voteCollection
-      .filter((voted) => voted !== vote)
-      .push({ ...vote, vote: vote.vote++ } as VotedProposal);
-  } else {
-    voteCollection.push({ ...proposal, vote: 1 } as VotedProposal);
-  }
-  return sortByVotes(sortByDate(voteCollection));
+export const topVotes = (
+  voteCollection: VotedProposalCollection
+): VotedProposalCollection => {
+  return voteCollection; //.slice(0, 3);
 };
 
 export const nextMeetDays = (
@@ -82,8 +110,10 @@ export const nextMeetDays = (
   today: Day,
   slotType: SlotType
 ): VotedProposalCollection => {
-  return proposals
-    .filter((proposal: Proposal) => withOutdated(proposal, today))
-    .filter((proposal: Proposal) => withSlot(proposal, slotType))
-    .reduce<VotedProposalCollection>(toVoteReducer, []);
+  return topVotes(
+    proposals
+      .filter((proposal: Proposal) => withOutdated(proposal, today))
+      .filter((proposal: Proposal) => withSlot(proposal, slotType))
+      .reduce<VotedProposalCollection>(toVote, [])
+  );
 };

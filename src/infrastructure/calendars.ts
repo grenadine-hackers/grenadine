@@ -26,7 +26,7 @@ const getNextWeeks = (startDay: Day): Day[] => {
     }
     startDate = startDate.add(1, "day");
   }
-
+  console.log(startDay, finalPeriod);
   return finalPeriod;
 };
 

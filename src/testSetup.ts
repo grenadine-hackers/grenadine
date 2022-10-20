@@ -10,10 +10,11 @@ import type {
 import type { RenderOptions } from "@testing-library/vue";
 import { calendar } from "@/infrastructure/calendars";
 import { j0 } from "./proposals/domain/day.fixture";
-import { calendarSymbol, proposalSymbol } from "@/infrastructure/symbols";
+import { calendarSymbol } from "@/infrastructure/symbols";
 import { userPlugin } from "@/plugins/userPlugin";
 import type { User } from "@/proposals/domain/user";
 import { InMemoryUsers } from "@/infrastructure/inMemoryUsers";
+import { proposalsPlugin } from "@/plugins/proposalsPlugin";
 
 export type SetupOptions = RenderOptions & {
   today?: Day;
@@ -35,13 +36,10 @@ export const testSetup = ({
     getNextWeeks: (): Day[] => calendar.getNextWeeks(currentDay),
   };
 
-  const provideProposals: Proposals = proposals ?? InMemoryProposals;
-
   return {
     global: {
       provide: {
         [calendarSymbol]: provideCalendar,
-        [proposalSymbol]: provideProposals,
       },
       plugins: [
         createTestingPinia({
@@ -49,6 +47,7 @@ export const testSetup = ({
           initialState: { proposals: { proposals: foundProposals } },
         }),
         userPlugin(InMemoryUsers, user),
+        proposalsPlugin(proposals ?? InMemoryProposals(foundProposals)),
       ],
     },
     ...options,

@@ -7,10 +7,12 @@ import { createProposal } from "@/proposals/domain/proposal";
 
 let proposals: ProposalCollection = [];
 
-export const InMemoryProposals: Proposals = {
+export const InMemoryProposals = (
+  collection: ProposalCollection = []
+): Proposals => ({
   addProposal: (proposal: Proposal) => {
     proposals = [...proposals, proposal];
   },
   createProposal,
-  loadProposals: async () => proposals,
-};
+  loadProposals: async () => (proposals = collection),
+});
