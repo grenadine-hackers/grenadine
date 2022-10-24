@@ -1,11 +1,12 @@
 import { describe, expect, it, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/vue";
+
 import AddProposal from "@/proposals/AddProposal.vue";
-import { testSetup } from "@/testSetup";
-import type { Proposals } from "@/proposals/domain/proposal";
 import { InMemoryProposals } from "@/infrastructure/inMemoryProposals";
-import { j0 } from "@/proposals/domain/day.fixture";
+import type { Proposals } from "@/proposals/domain/proposal";
 import { SlotType } from "@/proposals/domain/slot";
+import { j0 } from "@/proposals/domain/day.fixture";
+import { testSetup } from "@/testSetup";
 
 describe("AddProposal", () => {
   describe.each([
@@ -25,22 +26,30 @@ describe("AddProposal", () => {
 
       expect(screen.getByRole("checkbox", { name: ctaLabel })).toBeTruthy();
     });
-  });
 
-  // TODO UNSKIP THIS TEST
-  it.skip("calls add proposals when clicking on a valid proposal", async () => {
-    expect.assertions(1);
-    const proposals: Proposals = {
-      ...InMemoryProposals(),
-      addProposal: () => {},
-    };
+    it("is selected by props", () => {
+      expect.assertions(1);
 
-    const addProposal = vi.spyOn(proposals, "addProposal");
-    render(AddProposal, testSetup({ props: { day: j0 }, proposals }));
+      render(
+        AddProposal,
+        testSetup({ props: { day: j0, slotType, isSelected: true } })
+      );
 
-    const button = screen.getByRole("button", { name: "Midi" });
-    await fireEvent.click(button);
+      expect(
+        screen.getByRole("checkbox", { name: ctaLabel, checked: true })
+      ).toBeTruthy();
+    });
+    it("is unselected by props", () => {
+      expect.assertions(1);
 
-    expect(addProposal).toHaveBeenCalledOnce();
+      render(
+        AddProposal,
+        testSetup({ props: { day: j0, slotType, isSelected: false } })
+      );
+
+      expect(
+        screen.getByRole("checkbox", { name: ctaLabel, checked: false })
+      ).toBeTruthy();
+    });
   });
 });

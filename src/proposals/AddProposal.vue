@@ -1,10 +1,6 @@
 <template>
-  <input
-    type="checkbox"
-    :name="checkboxId"
-    :id="checkboxId"
-    @change="newProposal()"
-  />
+  <input type="checkbox" :name="checkboxId" :id="checkboxId" @change="newProposal()" :checked="isSelected"
+    :aria-checked="isSelected" />
   <label :for="checkboxId">{{ label }}</label>
 </template>
 
@@ -18,7 +14,11 @@ import { computed } from "vue";
 
 const { addProposal } = useAddProposal();
 const user = useCurrentUser();
-const props = defineProps<{ day: Day; slotType: SlotType }>();
+const props = defineProps<{
+  day: Day;
+  slotType: SlotType;
+  isSelected: boolean;
+}>();
 
 const newProposal = () => {
   const proposal = createProposal({ slot: props.slotType, ...props.day }, user);
@@ -32,4 +32,6 @@ const label = computed((): string =>
 const checkboxId = computed((): string => `${props.day.date}-${label.value}`);
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>
