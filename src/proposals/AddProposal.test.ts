@@ -3,10 +3,11 @@ import { fireEvent, render, screen } from "@testing-library/vue";
 
 import AddProposal from "@/proposals/AddProposal.vue";
 import { InMemoryProposals } from "@/infrastructure/inMemoryProposals";
-import type { Proposals } from "@/proposals/domain/proposal";
+import { createProposal, type Proposals } from "@/proposals/domain/proposal";
 import { SlotType } from "@/proposals/domain/slot";
-import { j0 } from "@/proposals/domain/day.fixture";
+import { j0, j3 } from "@/proposals/domain/day.fixture";
 import { testSetup } from "@/testSetup";
+import { userA, userDefault } from "./domain/user.fixture";
 
 describe("AddProposal", () => {
   describe.each([
@@ -27,29 +28,58 @@ describe("AddProposal", () => {
       expect(screen.getByRole("checkbox", { name: ctaLabel })).toBeTruthy();
     });
 
-    it("is selected by props", () => {
+    it("calls add proposals method when clicking on a valid proposal", async () => {
       expect.assertions(1);
+      const proposals: Proposals = {
+        ...InMemoryProposals(),
+        addProposal: () => {},
+      };
+
+      const addProposal = vi.spyOn(proposals, "addProposal");
 
       render(
         AddProposal,
-        testSetup({ props: { day: j0, slotType, isSelected: true } })
+        testSetup({
+          props: { day: j0, slotType },
+          proposals,
+          foundProposals: [
+            createProposal({ slot: slotType, ...j3 }, userDefault),
+          ],
+        })
       );
 
-      expect(
-        screen.getByRole("checkbox", { name: ctaLabel, checked: true })
-      ).toBeTruthy();
+      const button = screen.getByRole("checkbox", { name: ctaLabel });
+      await fireEvent.click(button);
+
+      expect(addProposal).toHaveBeenCalledOnce();
     });
-    it("is unselected by props", () => {
-      expect.assertions(1);
 
+    it("calls delete proposals method when clicking on a valid proposal", async () => {
+      expect.assertions(1);
+      const proposals: Proposals = {
+        ...InMemoryProposals(),
+        deleteProposal: () => {},
+      };
+
+      const deleteProposal = vi.spyOn(proposals, "deleteProposal");
+
+      const myProposal = createProposal({ slot: slotType, ...j3 }, userA);
       render(
         AddProposal,
-        testSetup({ props: { day: j0, slotType, isSelected: false } })
+        testSetup({
+          props: { day: j0, slotType, myProposal },
+          proposals,
+          foundProposals: [
+            createProposal({ slot: slotType, ...j3 }, userDefault),
+            myProposal,
+          ],
+        })
       );
 
-      expect(
-        screen.getByRole("checkbox", { name: ctaLabel, checked: false })
-      ).toBeTruthy();
+      const button = screen.getByRole("checkbox", { name: ctaLabel });
+      await fireEvent.click(button);
+
+      expect(deleteProposal).toHaveBeenCalledOnce();
     });
   });
 });

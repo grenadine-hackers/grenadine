@@ -23,13 +23,13 @@ export const useProposalStore = defineStore("proposals", {
         nextMeetDays(state.proposals, today, SlotType.DINNER);
     },
     my: (state) => {
-      return (user: User, slot: SlotType, day: Day) =>
-        state.proposals.filter(
+      return (user: User, slot: SlotType, day: Day): Proposal | undefined =>
+        state.proposals.find(
           (proposal: Proposal) =>
             proposal.user.id === user.id &&
             dayjs(day.date).isSame(proposal.date, "day") &&
             proposal.slot === slot
-        ).length > 0;
+        );
     },
   },
 });

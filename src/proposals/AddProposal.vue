@@ -1,28 +1,30 @@
 <template>
-  <input type="checkbox" :name="checkboxId" :id="checkboxId" @change="newProposal()" :checked="isSelected"
-    :aria-checked="isSelected" />
+  <input type="checkbox" :name="checkboxId" :id="checkboxId" @change="checkProposal()" :checked="!!myProposal"
+    :aria-checked="!!myProposal" />
   <label :for="checkboxId">{{ label }}</label>
 </template>
 
 <script setup lang="ts">
 import type { Day } from "@/proposals/domain/day";
 import { useAddProposal } from "@/proposals/use-cases/useAddProposal";
+import { useDeleteProposal } from "@/proposals/use-cases/useDeleteProposal";
 import { isLunch, SlotType } from "@/proposals/domain/slot";
 import { useCurrentUser } from "@/proposals/use-cases/useCurrentUser";
-import { createProposal } from "@/proposals/domain/proposal";
+import { createProposal, type Proposal } from "@/proposals/domain/proposal";
 import { computed } from "vue";
 
 const { addProposal } = useAddProposal();
+const { deleteProposal } = useDeleteProposal();
 const user = useCurrentUser();
 const props = defineProps<{
   day: Day;
   slotType: SlotType;
-  isSelected: boolean;
+  myProposal?: Proposal;
 }>();
 
-const newProposal = () => {
+const checkProposal = () => {
   const proposal = createProposal({ slot: props.slotType, ...props.day }, user);
-  addProposal(proposal);
+  props.myProposal ? deleteProposal(props.myProposal) : addProposal(proposal);
 };
 
 const label = computed((): string =>

@@ -3,8 +3,8 @@
   <ul>
     <li v-for="day in nextWeeks" :key="day.date" aria-label="date">
       {{ dayFormat(day) }}
-      <AddProposal :day="day" :slot-type="lunch" :is-selected="isSelected(lunch, day)" />
-      <AddProposal :day="day" :slot-type="dinner" :is-selected="isSelected(dinner, day)" />
+      <AddProposal :day="day" :slot-type="lunch" :my-proposal="myProposal(lunch, day)" />
+      <AddProposal :day="day" :slot-type="dinner" :my-proposal="myProposal(dinner, day)" />
     </li>
   </ul>
 </template>
@@ -18,8 +18,7 @@ import { useMyProposals } from "./use-cases/useMyProposals";
 
 const { nextWeeks } = useNextWeeks();
 const { dayFormat } = useDayFormat();
-const { isSelected } = useMyProposals();
-
+const { myProposal } = useMyProposals();
 </script>
 
 <style scoped>
