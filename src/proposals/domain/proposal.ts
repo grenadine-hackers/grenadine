@@ -113,8 +113,8 @@ export const nextMeetDays = (
   slotType: SlotType
 ): VotedProposalCollection => {
   return proposals
-    .reduce<VotedProposalCollection>(toVote, [])
     .filter((proposal: Proposal) => withOutdated(proposal, today))
     .filter((proposal: Proposal) => withSlot(proposal, slotType))
+    .reduce<VotedProposalCollection>(toVote, [])
     .slice(0, 3);
 };
