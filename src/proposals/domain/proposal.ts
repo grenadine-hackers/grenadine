@@ -33,7 +33,9 @@ export const createProposal = (
 ): Proposal => {
   return {
     id: (proposal.id ?? uuid()) as ProposalId,
-    date: proposal.date ?? new Date().toISOString(),
+    date:
+      `${dayjs(proposal.date).format("YYYY-MM-DD")}T00:00:00.000Z` ??
+      `${dayjs().format("YYYY-MM-DD")}T00:00:00.000Z`,
     slot: proposal.slot ?? SlotType.LUNCH,
     user,
   };
