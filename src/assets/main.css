@@ -1,0 +1,18 @@
+:root {
+    --font-color: rgba(51, 42, 45, 1);
+    --grenadine: rgba(252, 0, 94, 1);
+    --light-grenadine: rgba(255, 240, 246, 1);
+
+    --size-m: 16px;
+  }
+  
+
+body {
+   font-family:  Helvetica Neue,HelveticaNeue,Roboto,Liberation Sans,Nimbus Sans L,Helvetica,Arial,sans-serif;
+   font-size: var(--size-m);
+   color: var(--font-color);
+}
+
+li::marker {
+    color: var(--grenadine);
+}
