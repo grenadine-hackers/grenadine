@@ -1,14 +1,13 @@
-import { createApp } from "vue";
-import { createPinia } from "pinia";
+import "./assets/main.scss";
 
 import App from "./App.vue";
-import router from "./router";
-
-import "./assets/main.css";
-import { userPlugin } from "@/plugins/userPlugin";
-import { proposalsPlugin } from "@/plugins/proposalsPlugin";
+import { createApp } from "vue";
+import { createPinia } from "pinia";
 import { localUsers } from "@/infrastructure/localUsers";
+import { proposalsPlugin } from "@/plugins/proposalsPlugin";
+import router from "./router";
 import { supabaseProposals } from "@/infrastructure/supabaseProposals";
+import { userPlugin } from "@/plugins/userPlugin";
 
 const app = createApp(App);
 
