@@ -13,7 +13,7 @@ describe("MyProposals", () => {
   it("has a title", () => {
     expect.assertions(1);
     render(MyProposals, testSetup());
-    const title = screen.getByRole("heading", { name: "Mes disponibilités" });
+    const title = screen.getByRole("heading", { name: "Prochaines dates" });
     expect(title).toBeTruthy();
   });
   it("lists the next dates", () => {

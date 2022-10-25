@@ -1,5 +1,5 @@
 <template>
-  <h2>Mes disponibilités</h2>
+  <h2>Prochaines dates</h2>
   <ul>
     <li v-for="day in nextWeeks" :key="day.date" aria-label="date">
       {{ dayFormat(day) }}
