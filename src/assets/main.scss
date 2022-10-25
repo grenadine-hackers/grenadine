@@ -1,16 +1,32 @@
-:root {
-    --font-color: rgba(51, 42, 45, 1);
-    --grenadine: rgba(252, 0, 94, 1);
-    --light-grenadine: rgba(255, 240, 246, 1);
+@import "normalize.css/normalize.css";
 
-    --size-m: 16px;
-  }
+:root {
+  --chocolate: rgba(51, 42, 45, 1);
+  --dark-chocolate: rgba(38, 28, 32, 1);
+  --grenadine: rgba(252, 0, 94, 1);
+  --light-grenadine: rgba(255, 240, 246, 1);
+  --bronze: rgba(255, 185, 185, 1);
+  --gold: rgba(255, 166, 0, 1);
+  --silver: rgba(227, 227, 227, 1);
+
+  --spacing-xs: 8px;
+  --spacing-s: 18px;
+  --spacing-m: 24px;
+  --spacing-ml: 40px;
+  --spacing-l: 48px;
+  --spacing-xl: 56px;
+  --spacing-3xl: 180px;
+  --primary-font-color: var(--light-grenadine);
+  --secondary-font-color: var(--chocolate);
+  --link-font-color: var(--colors-blue-3)
+}
   
 
 body {
    font-family:  Helvetica Neue,HelveticaNeue,Roboto,Liberation Sans,Nimbus Sans L,Helvetica,Arial,sans-serif;
-   font-size: var(--size-m);
-   color: var(--font-color);
+   font-size: var(--spacing-m);
+   color: var(--primary-font-color);
+   background: var(--chocolate);
 }
 
 li::marker {
