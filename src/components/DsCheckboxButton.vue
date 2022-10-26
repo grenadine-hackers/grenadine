@@ -50,5 +50,8 @@ const change = (evt: Event) => {
     background: var(--light-grenadine);
     color: var(--chocolate);
   }
+  & + & {
+    margin-left: var(--spacing-m);
+  }
 }
 </style>
