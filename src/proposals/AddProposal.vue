@@ -1,7 +1,10 @@
 <template>
-  <input type="checkbox" :name="checkboxId" :id="checkboxId" @change="checkProposal()" :checked="!!myProposal"
-    :aria-checked="!!myProposal" />
-  <label :for="checkboxId">{{ label }}</label>
+  <DsCheckboxButton
+    :id="checkboxId"
+    @change="checkProposal()"
+    :checked="!!myProposal"
+    >{{ label }}</DsCheckboxButton
+  >
 </template>
 
 <script setup lang="ts">
@@ -12,6 +15,7 @@ import { isLunch, SlotType } from "@/proposals/domain/slot";
 import { useCurrentUser } from "@/proposals/use-cases/useCurrentUser";
 import { createProposal, type Proposal } from "@/proposals/domain/proposal";
 import { computed } from "vue";
+import DsCheckboxButton from "@/components/DsCheckboxButton.vue";
 
 const { addProposal } = useAddProposal();
 const { deleteProposal } = useDeleteProposal();
@@ -34,6 +38,4 @@ const label = computed((): string =>
 const checkboxId = computed((): string => `${props.day.date}-${label.value}`);
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
