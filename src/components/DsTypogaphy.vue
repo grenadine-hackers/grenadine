@@ -11,7 +11,7 @@ type InlineTag =
   | "strong";
 type Size = "xs" | "s" | "m" | "l" | "xl" | "4xl";
 type Color = "primary" | "secondary";
-type Weight = "bold" | "normal";
+type Weight = "bold" | "normal" | "light";
 
 defineProps<{ tag?: InlineTag; size: Size; color?: Color; weight?: Weight }>();
 </script>
@@ -50,11 +50,7 @@ defineProps<{ tag?: InlineTag; size: Size; color?: Color; weight?: Weight }>();
     letter-spacing: -0.2px;
   }
   &--size-l {
-    font-size: 1.25rem;
-    letter-spacing: -0.2px;
-  }
-  &--size-ll {
-    font-size: 1.75rem;
+    font-size: 2rem;
     letter-spacing: -0.2px;
   }
   &--size-xl {
@@ -70,6 +66,9 @@ defineProps<{ tag?: InlineTag; size: Size; color?: Color; weight?: Weight }>();
   }
   &--weight-bold {
     font-weight: bold;
+  }
+  &--weight-light {
+    font-weight: 300;
   }
   &--color-primary {
     color: var(--primary-font-color);

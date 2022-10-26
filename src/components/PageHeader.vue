@@ -5,7 +5,7 @@
     width="64"
     alt="logo Grenadine"
   />
-  <DsTypogaphy tag="h1" size="xl"> Grenadine </DsTypogaphy>
+  <DsTypogaphy tag="h1" size="xl" weight="light"> Grenadine </DsTypogaphy>
 </template>
 
 <script setup lang="ts">

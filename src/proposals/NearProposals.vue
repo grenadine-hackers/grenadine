@@ -4,6 +4,7 @@ import { useDayFormat } from "@/proposals/use-cases/useDayFormat";
 import { useProposalStore } from "@/stores/ProposalStore";
 import { computed } from "vue";
 import { useToday } from "@/proposals/use-cases/useToday";
+import DsTypogaphy from "@/components/DsTypogaphy.vue";
 
 const props = defineProps<{ slotType: SlotType }>();
 
@@ -22,9 +23,14 @@ const displayVote = (voteCount: number) =>
 </script>
 
 <template>
-  <div>
-    <h1 v-if="isLunch(slotType)">Prochain midi</h1>
-    <h1 v-if="isDinner(slotType)">Prochain afterwork</h1>
+  <div class="nearProposal">
+    <DsTypogaphy tag="h2" size="l" weight="light" v-if="isLunch(slotType)">
+      Prochain midi
+    </DsTypogaphy>
+
+    <DsTypogaphy tag="h2" size="l" weight="light" v-if="isDinner(slotType)">
+      Prochain afterwork
+    </DsTypogaphy>
 
     <div v-if="votes.length === 0">
       <strong v-if="isLunch(slotType)">Aucun midi disponible</strong>
@@ -38,3 +44,9 @@ const displayVote = (voteCount: number) =>
     </ol>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.nearProposal {
+  margin-bottom: var(--spacing-l);
+}
+</style>

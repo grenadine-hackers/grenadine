@@ -23,10 +23,11 @@
 
 
 body {
-   font-family:  Helvetica Neue,HelveticaNeue,Roboto,Liberation Sans,Nimbus Sans L,Helvetica,Arial,sans-serif;
-   font-size: var(--spacing-m);
-   color: var(--primary-font-color);
-   background: var(--chocolate);
+  font-family: Helvetica Neue, HelveticaNeue, Roboto, Liberation Sans, Nimbus Sans L, Helvetica, Arial, sans-serif;
+  font-size: var(--spacing-m);
+  font-weight: 300;
+  color: var(--primary-font-color);
+  background: var(--chocolate);
   letter-spacing: -0.2px;
 }
 
@@ -35,6 +36,7 @@ li::marker {
 }
 
 h1, h2, h3, h4 {
-  font-weight: normal;
+  font-weight: 300;
   margin-top: 0;
+  text-align: center;
 }
