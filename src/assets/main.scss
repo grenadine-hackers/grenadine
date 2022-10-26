@@ -20,15 +20,21 @@
   --secondary-font-color: var(--chocolate);
   --link-font-color: var(--colors-blue-3)
 }
-  
+
 
 body {
    font-family:  Helvetica Neue,HelveticaNeue,Roboto,Liberation Sans,Nimbus Sans L,Helvetica,Arial,sans-serif;
    font-size: var(--spacing-m);
    color: var(--primary-font-color);
    background: var(--chocolate);
+  letter-spacing: -0.2px;
 }
 
 li::marker {
-    color: var(--grenadine);
+  color: var(--grenadine);
+}
+
+h1, h2, h3, h4 {
+  font-weight: normal;
+  margin-top: 0;
 }
