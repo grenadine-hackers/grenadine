@@ -1,13 +1,16 @@
 @import "normalize.css/normalize.css";
 
 :root {
+  --bronze: rgba(255, 185, 185, 1);
+  --bronze-medal: rgba(185, 51, 51, 1);
   --chocolate: rgba(51, 42, 45, 1);
   --dark-chocolate: rgba(38, 28, 32, 1);
+  --font: rgba(51, 42, 45, 1);
+  --gold: rgba(255, 166, 0, 1);
   --grenadine: rgba(252, 0, 94, 1);
   --light-grenadine: rgba(255, 240, 246, 1);
-  --bronze: rgba(255, 185, 185, 1);
-  --gold: rgba(255, 166, 0, 1);
   --silver: rgba(227, 227, 227, 1);
+  --silver-medal: rgba(89, 89, 89, 1);
 
   --spacing-xs: 8px;
   --spacing-s: 18px;
@@ -18,7 +21,6 @@
   --spacing-3xl: 180px;
   --primary-font-color: var(--light-grenadine);
   --secondary-font-color: var(--chocolate);
-  --link-font-color: var(--colors-blue-3)
 }
 
 

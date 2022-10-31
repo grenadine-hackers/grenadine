@@ -37,14 +37,11 @@ const change = (evt: Event) => {
     cursor: pointer;
     border: 2px solid var(--grenadine);
     background: var(--grenadine);
-    &::before {
-      content: "";
-      margin-right: var(--spacing-xs);
-    }
   }
   &__checkbox:checked + &__label {
     &::before {
       content: "✓";
+      margin-right: var(--spacing-xs);
       color: var(--grenadine);
     }
     background: var(--light-grenadine);

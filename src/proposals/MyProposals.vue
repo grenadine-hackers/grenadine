@@ -48,6 +48,7 @@ const { myProposal } = useMyProposals();
 }
 .dateProposal {
   position: relative;
+  text-transform: capitalize;
   &::before {
     content: "";
     display: block;

@@ -36,8 +36,14 @@ const displayVote = (voteCount: number) =>
       <strong v-if="isLunch(slotType)">Aucun midi disponible</strong>
       <strong v-if="isDinner(slotType)">Aucun afterwork disponible</strong>
     </div>
-    <ol v-else>
-      <li v-for="vote in votes" :key="vote.date" aria-label="available date">
+    <ol v-else class="nearProposal__result">
+      <li
+        v-for="(vote, index) in votes"
+        :key="vote.date"
+        :class="`proposalResult proposalResult--${index}`"
+        aria-label="available date"
+      >
+        <span :class="`medal medal--${index + 1}`">{{ index + 1 }}</span>
         {{ dayFormat(vote) }}
         ({{ displayVote(vote.vote) }})
       </li>
@@ -48,5 +54,55 @@ const displayVote = (voteCount: number) =>
 <style lang="scss" scoped>
 .nearProposal {
   margin-bottom: var(--spacing-l);
+  &__result {
+    padding: 0;
+    display: flex;
+    gap: var(--spacing-m);
+
+    flex-wrap: nowrap;
+  }
+  .proposalResult {
+    color: var(--gold);
+    text-transform: capitalize;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+
+    &::marker {
+      display: none;
+    }
+    &:nth-child(2n) {
+      color: var(--silver);
+    }
+    &:nth-child(3n) {
+      color: var(--bronze);
+    }
+  }
+  .medal {
+    display: inline-block;
+    width: var(--spacing-s);
+    height: var(--spacing-s);
+    text-align: center;
+    padding: var(--spacing-xs);
+    border-radius: var(--spacing-m);
+    font-style: italic;
+    font-size: var(--spacing-s);
+    font-weight: 400;
+    margin: var(--spacing-m);
+    &--1 {
+      background-color: var(--gold);
+      color: var(--chocolate);
+    }
+    &--2 {
+      background-color: var(--silver-medal);
+      color: var(--silver);
+    }
+    &--3 {
+      background-color: var(--bronze-medal);
+      color: var(--bronze);
+    }
+  }
 }
 </style>
