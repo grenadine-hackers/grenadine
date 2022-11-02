@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { j0, j1, j3, j5 } from "./domain/day.fixture";
+import { j0, j1, j2, j3, j5 } from "./domain/day.fixture";
 import { render, screen } from "@testing-library/vue";
 import { userA, userDefault } from "./domain/user.fixture";
 
@@ -24,6 +24,29 @@ describe("MyProposals", () => {
     const dates = screen.getAllByRole("listitem", { name: "date" });
     expect(dates).toHaveLength(weekDays.length);
   });
+  describe.each([
+    {
+      weekLabel: "semaine prochaine",
+      weekInformation: "next week",
+    },
+    {
+      weekLabel: "dans 2 semaines",
+      weekInformation: "by 2 weeks",
+    },
+    {
+      weekLabel: "dans 3 semaines",
+      weekInformation: "by 3 weeks",
+    },
+  ])("provides weeks informations for $weekInformation", ({ weekLabel }) => {
+    it("displays $weekLabel information", () => {
+      expect.assertions(1);
+      render(MyProposals, testSetup({ today: j3 }));
+
+      const currentWeek = screen.getByText(weekLabel);
+      expect(currentWeek).toBeTruthy();
+    });
+  });
+
   describe("shows the proposals made by the user", () => {
     it("does not check a proposal I did not made", async () => {
       expect.assertions(1);
