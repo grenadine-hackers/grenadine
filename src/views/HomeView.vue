@@ -25,11 +25,20 @@ import PageLayout from "@/components/PageLayout.vue";
 
 <style lang="scss" scoped>
 .proposals {
-  display: flex;
-  &__near,
+  &__near {
+  }
+
   &__my {
-    width: 50%;
     padding: var(--spacing-m);
+  }
+}
+@media (min-width: 820px) {
+  .proposals {
+    display: flex;
+    &__near,
+    &__my {
+      width: 50%;
+    }
   }
 }
 </style>
