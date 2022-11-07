@@ -17,9 +17,12 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 type SupabaseProposal = definitions["proposals"];
 
+const proposalTable: string =
+  import.meta.env.VITE_ENV === "dev" ? "proposals_dev" : "proposals";
+
 const loadProposals = async (): Promise<ProposalCollection> => {
   const { data, error } = await supabase
-    .from("proposals")
+    .from(proposalTable)
     .select()
     .gte("date", calendars.today().date);
   const supaProposal = data as SupabaseProposal[];
@@ -34,7 +37,7 @@ const loadProposals = async (): Promise<ProposalCollection> => {
 };
 
 const addProposal = async (proposal: Proposal) => {
-  const { error } = await supabase.from("proposals").insert({
+  const { error } = await supabase.from(proposalTable).insert({
     id: proposal.id,
     date: proposal.date,
     slot: proposal.slot,
@@ -44,7 +47,7 @@ const addProposal = async (proposal: Proposal) => {
 
 const deleteProposal = async (proposal: Proposal) => {
   const { error } = await supabase
-    .from("proposals")
+    .from(proposalTable)
     .delete()
     .eq("id", proposal.id);
 };
