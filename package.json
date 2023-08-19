@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
+    "ci": "run-p type-check build-only",
     "preview": "vite preview --port 4173",
     "test": "vitest --environment jsdom",
     "test-ci": "vitest run --environment jsdom",
